@@ -15,7 +15,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0
 .navlinks{display:flex;gap:22px;align-items:center;font-size:14px}.btn{display:inline-block;background:var(--red);color:white;padding:13px 20px;border:0;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.3px;cursor:pointer}.btn.gold{background:var(--gold);color:#201a12}.btn.outline{background:transparent;border:1px solid var(--gold);color:var(--ink)}
 .hero{min-height:550px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px;padding:45px 0 65px}.kicker{color:var(--red);letter-spacing:3px;text-transform:uppercase;font-size:11px;font-weight:700}
 h1{font:clamp(44px,6vw,76px)/1.03 Georgia,serif;margin:18px 0 20px;letter-spacing:-2px}.hero p{font-size:17px;line-height:1.8;color:#555f57;max-width:490px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.heroimg{height:460px;border-radius:48% 48% 3px 3px;overflow:hidden;position:relative;background:#d7c3a4}.heroimg img{width:100%;height:100%;object-fit:cover}.heroimg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1a1c17aa,transparent 55%)}.imglabel{position:absolute;bottom:25px;left:25px;color:white;z-index:1;font:24px Georgia,serif}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.heroimg{height:460px;border-radius:48% 48% 3px 3px;overflow:hidden;position:relative;background:#d7c3a4}.heroimg img{width:100%;height:100%;object-fit:cover}.heroimg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1a1c17aa,transparent 55%)}.imglabel{position:absolute;bottom:25px;left:25px;color:white;z-index:1;font:24px Georgia,serif}.signature-hero{border-radius:4px;height:auto;aspect-ratio:1536/1024}.signature-hero img{object-fit:contain}.signature-hero:after{display:none}
 .strip{background:var(--green);color:var(--cream);padding:18px 0;text-align:center;letter-spacing:2px;font-size:11px;text-transform:uppercase}
 section{padding:78px 0}.sectionhead{text-align:center;max-width:650px;margin:0 auto 40px}.sectionhead h2{font:clamp(32px,4vw,48px) Georgia,serif;margin:12px 0}.sectionhead p{color:var(--muted);line-height:1.7}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:#fffaf2;padding:28px;border:1px solid #e8dfd1}.card h3{font:25px Georgia,serif;margin:12px 0}.card p{color:var(--muted);line-height:1.7;font-size:14px}.num{font:12px Georgia,serif;color:var(--gold)}
@@ -80,7 +80,7 @@ footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justi
 <div><div class="kicker">A taste of Asia in Guwahati</div><h1>Where Asia<br>meets your table.</h1>
 <p>Discover a vibrant Pan-Asian dining experience with flavors inspired by India, China, Thailand, Japan and Korea—served in a warm, contemporary setting.</p>
 <div class="actions"><a class="btn gold" href="#reservation">Reserve a Table</a></div></div>
-<div class="heroimg"><img src="bangwi-interior.jpg" alt="Warm contemporary restaurant dining ambience"><div class="imglabel">A little journey, every meal.</div></div>
+<div class="heroimg signature-hero"><img src="bangwi-signature-mainpage.jpg" alt="Bang’wi Pan Asian Bistro signature dishes: Hakka noodles, prawn Pad Thai and Asian appetizers" loading="eager"></div>
 </div>
 <div class="strip">Pan-Asian flavors · Thoughtful hospitality · Good food, shared moments</div>
 <section id="story" class="wrap"><div class="sectionhead"><div class="kicker">Welcome to Bang'wi</div><h2>More than a meal.<br>A journey across Asia.</h2><p>From comforting bowls and wok-tossed favorites to bold, aromatic Asian-inspired dishes, Bang'wi brings a colorful mix of culinary traditions together.</p></div>
@@ -210,7 +210,7 @@ footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justi
 </section>
 
 <section class="wrap about"><div><div class="kicker">The Bang'wi experience</div><h2>Good food.<br>Good company.<br>Beautiful memories.</h2><p>Whether you're stopping by for a relaxed lunch, dinner with friends, or a special occasion, we look forward to welcoming you to Bang'wi Pan Asian Bistro.</p><a class="btn" href="#reservation">Plan Your Visit</a></div>
-<div class="aboutimg about-gallery"><img src="genz-gaming-lounge-interior.jpg" alt="Gen Z Gaming Lounge VIP Chowk interior" loading="lazy"><img src="genz-gaming-party.jpg" alt="Gen Z Gaming Lounge birthday and party setup" loading="lazy"></div></section>
+</section>
 <section id="reservation" class="reservation"><div class="wrap reservationgrid">
 <div><div class="kicker">Make it a date</div><h2>Reserve your<br>Bang'wi moment.</h2><p>Send us your preferred date, time and party size through WhatsApp. Our team can confirm availability directly with you.</p><p><strong>Reservation requests are not confirmed until the restaurant replies.</strong></p></div>
 <div><form id="bookingForm">
