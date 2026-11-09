@@ -1,158 +1,266 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bang'wi Pan Asian Bistro | Guwahati</title>
+<meta name="description" content="Bang'wi Pan Asian Bistro at VIP Chowk, Airport Road, Guwahati. Explore Pan-Asian flavors, order online, or request a table.">
+<meta name="theme-color" content="#1d2922">
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f8f3e9;color:#24352b}
-header{background:#173b2c;color:#fff;padding:18px;text-align:center}
-nav{padding:12px;text-align:center;background:#244b38}
-nav a{color:white;margin:12px;text-decoration:none}
-.hero{text-align:center;padding:60px 20px;background:#e8dfcf}
-.hero img{width:100%;max-width:700px;border-radius:12px}
-h1,h2{color:#b18a45}
-section{padding:35px 20px;max-width:1100px;margin:auto}
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 3px 10px #ddd}
-.card img{width:100%;height:190px;object-fit:cover}
-.card div{padding:15px}
-button{background:#244b38;color:white;padding:12px 18px;border:0;border-radius:6px;cursor:pointer}
-input,select,textarea{width:100%;padding:12px;margin:8px 0;box-sizing:border-box}
-form{max-width:600px;margin:auto}
-footer{background:#173b2c;color:white;text-align:center;padding:25px}
+:root{--ink:#18221d;--cream:#f7f2e8;--gold:#c79b55;--red:#9b3528;--muted:#6c746d;--green:#1d2922}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--cream)}
+a{color:inherit;text-decoration:none}.wrap{width:min(1140px,92%);margin:auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:20px}
+.logo{font-family:Georgia,serif;font-size:25px;font-weight:bold}.logo span{display:block;font:10px Arial;letter-spacing:4px;color:var(--red);margin-top:4px}
+.navlinks{display:flex;gap:22px;align-items:center;font-size:14px}.btn{display:inline-block;background:var(--red);color:white;padding:13px 20px;border:0;border-radius:2px;font-weight:600;font-size:13px;letter-spacing:.3px;cursor:pointer}.btn.gold{background:var(--gold);color:#201a12}.btn.outline{background:transparent;border:1px solid var(--gold);color:var(--ink)}
+.hero{min-height:550px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px;padding:45px 0 65px}.kicker{color:var(--red);letter-spacing:3px;text-transform:uppercase;font-size:11px;font-weight:700}
+h1{font:clamp(44px,6vw,76px)/1.03 Georgia,serif;margin:18px 0 20px;letter-spacing:-2px}.hero p{font-size:17px;line-height:1.8;color:#555f57;max-width:490px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.heroimg{height:460px;border-radius:48% 48% 3px 3px;overflow:hidden;position:relative;background:#d7c3a4}.heroimg img{width:100%;height:100%;object-fit:cover}.heroimg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1a1c17aa,transparent 55%)}.imglabel{position:absolute;bottom:25px;left:25px;color:white;z-index:1;font:24px Georgia,serif}
+.strip{background:var(--green);color:var(--cream);padding:18px 0;text-align:center;letter-spacing:2px;font-size:11px;text-transform:uppercase}
+section{padding:78px 0}.sectionhead{text-align:center;max-width:650px;margin:0 auto 40px}.sectionhead h2{font:clamp(32px,4vw,48px) Georgia,serif;margin:12px 0}.sectionhead p{color:var(--muted);line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:#fffaf2;padding:28px;border:1px solid #e8dfd1}.card h3{font:25px Georgia,serif;margin:12px 0}.card p{color:var(--muted);line-height:1.7;font-size:14px}.num{font:12px Georgia,serif;color:var(--gold)}
+.menu{background:#eee6d8}.menugrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.menuvisual{height:400px;overflow:hidden}.menuvisual img{width:100%;height:100%;object-fit:cover}.menulist{list-style:none;padding:0;margin:20px 0}.menulist li{display:flex;justify-content:space-between;border-bottom:1px solid #d7cbbb;padding:14px 0;font-family:Georgia,serif;font-size:18px}.menulist small{font:12px Arial;color:var(--muted);display:block;margin-top:5px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}.about h2{font:clamp(32px,4vw,48px) Georgia,serif}.about p{line-height:1.85;color:var(--muted)}.aboutimg{height:390px;overflow:hidden}.aboutimg img{width:100%;height:100%;object-fit:cover}
+.reservation{background:#fffaf2}.reservationgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:45px;align-items:start}.reservation h2,.visit h2{font:clamp(34px,4vw,48px) Georgia,serif;margin:12px 0}.reservation p{line-height:1.8;color:var(--muted)}form{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{display:block;font-size:12px;font-weight:700;color:#465149;margin-bottom:6px}input,select,textarea{width:100%;padding:13px;border:1px solid #d9d1c4;background:#fff;font:14px Arial;color:var(--ink);border-radius:2px}textarea{min-height:95px;resize:vertical}.full{grid-column:1/-1}.hint{font-size:12px;color:var(--muted);margin-top:10px}
+.visit{background:var(--green);color:var(--cream)}.visitgrid{display:grid;grid-template-columns:1fr 1fr;gap:50px}.visit p{color:#d2d7d1;line-height:1.8}.contactline{padding:13px 0;border-bottom:1px solid #435047}.contactline b{display:block;color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}.social{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.foodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.foodcard{background:#fffaf2;border:1px solid #e8dfd1;overflow:hidden;display:flex;flex-direction:column}
+.foodcard img{width:100%;height:220px;object-fit:cover}
+.foodbody{padding:22px;display:flex;flex-direction:column;align-items:flex-start;flex:1}
+.foodtag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:700}
+.foodbody h3{font:25px Georgia,serif;margin:10px 0}
+.foodbody p{font-size:14px;color:var(--muted);line-height:1.7;flex:1}
+.foodbody .btn{margin-top:12px}
+.menu-note{font-size:12px;color:var(--muted);line-height:1.6;margin:22px 0}
+.orderpanel{background:#fffaf2;border:1px solid #e4d9c8;padding:clamp(22px,4vw,42px);display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;margin-top:50px}
+.orderpanel h2{font:clamp(30px,4vw,44px) Georgia,serif;margin:12px 0}
+.orderpanel p{color:var(--muted);line-height:1.8}
+.menu-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:28px}
+.menu-cta span{font-size:13px;color:var(--muted)}
+
+
+.fullmenu{background:#fffaf2}
+.menu-pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.menu-page-card{border:1px solid #e5d7bf;background:#fff;padding:12px;box-shadow:0 8px 24px #3322110a}
+.menu-page-card a{display:block}
+.menu-page-card img{display:block;width:100%;height:auto;transition:transform .2s ease}
+.menu-page-card a:hover img{transform:scale(1.01)}
+.menu-page-caption{font:17px Georgia,serif;padding:12px 4px 3px}
+.menu-page-note{text-align:center;font-size:13px;color:var(--muted);line-height:1.7;margin-top:22px}
+@media(max-width:650px){.menu-pages{grid-template-columns:1fr}}
+
+.drinks-section{background:#f7f0e3}
+.drink-columns{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.drink-panel{background:#fffaf2;border:1px solid #e5d7bf;padding:28px}
+.drink-panel h3{font:clamp(25px,3vw,34px) Georgia,serif;margin:0 0 8px;color:var(--green)}
+.drink-subtitle{font-size:13px;color:var(--muted);margin:0 0 18px}
+.drink-row{display:grid;grid-template-columns:1fr auto;gap:12px;border-bottom:1px solid #e7ddce;padding:13px 0}
+.drink-row:last-child{border-bottom:0}
+.drink-row h4{font: bold 17px Arial,sans-serif;margin:0 0 4px}
+.drink-row p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.drink-price{font-weight:700;color:#27613a;white-space:nowrap}
+.drink-order{margin-top:18px}
+@media(max-width:760px){.drink-columns{grid-template-columns:1fr}.drink-panel{padding:22px}}
+
+@media(max-width:900px){.foodgrid{grid-template-columns:repeat(2,1fr)}.orderpanel{grid-template-columns:1fr}}
+@media(max-width:600px){.foodgrid{grid-template-columns:1fr}.foodcard img{height:240px}}
+
+@media(max-width:760px){.navlinks{gap:12px;font-size:12px}.navlinks a:not(.btn){display:none}.hero,.menugrid,.about,.visitgrid,.reservationgrid{grid-template-columns:1fr}.hero{padding-top:25px}.heroimg{height:350px}.cards{grid-template-columns:1fr}.menuvisual{height:280px}section{padding:55px 0}.aboutimg{height:280px}form{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
 <body>
-
-<header>
-<h1>Bang'wi Pan Asian Bistro</h1>
-<p>Authentic Asian Flavours • Guwahati</p>
-</header>
-
-<nav>
-<a href="#home">Home</a>
-<a href="#menu">View Menu</a>
-<a href="#order">Order on WhatsApp</a>
-</nav>
-
-<section class="hero" id="home">
-<img src="bangwi.jpg" alt="Bang'wi Pan Asian Bistro Restaurant">
-<h2>Discover the Taste of Asia</h2>
-<p>Japanese • Chinese • Thai • Korean • Pan Asian</p>
-<a href="#menu"><button>Explore Our Menu</button></a>
+<header class="wrap"><nav>
+<a class="logo" href="#">Bang'wi<span>PAN ASIAN BISTRO</span></a>
+<div class="navlinks"><a href="#story">Our Story</a><a href="#menu">Food</a><a href="#full-menu">Full Menu</a><a href="#drinks">Drinks</a><a href="#reservation">Reservations</a><a href="#visit">Visit</a></div>
+</nav></header>
+<main>
+<div class="wrap hero">
+<div><div class="kicker">A taste of Asia in Guwahati</div><h1>Where Asia<br>meets your table.</h1>
+<p>Discover a vibrant Pan-Asian dining experience with flavors inspired by India, China, Thailand, Japan and Korea—served in a warm, contemporary setting.</p>
+<div class="actions"><a class="btn gold" href="#reservation">Reserve a Table</a></div></div>
+<div class="heroimg"><img src="bangwi-interior.jpg" alt="Warm contemporary restaurant dining ambience"><div class="imglabel">A little journey, every meal.</div></div>
+</div>
+<div class="strip">Pan-Asian flavors · Thoughtful hospitality · Good food, shared moments</div>
+<section id="story" class="wrap"><div class="sectionhead"><div class="kicker">Welcome to Bang'wi</div><h2>More than a meal.<br>A journey across Asia.</h2><p>From comforting bowls and wok-tossed favorites to bold, aromatic Asian-inspired dishes, Bang'wi brings a colorful mix of culinary traditions together.</p></div>
+<div class="cards">
+<article class="card"><div class="num">01 / FLAVOR</div><h3>Across Asia</h3><p>Explore a menu inspired by Indian, Chinese, Thai, Japanese and Korean cuisines.</p></article>
+<article class="card"><div class="num">02 / AMBIENCE</div><h3>Modern & welcoming</h3><p>A vibrant atmosphere with contemporary design and Asian-inspired touches.</p></article>
+<article class="card"><div class="num">03 / HOSPITALITY</div><h3>Made for moments</h3><p>Join us for casual dining, celebrations, and memorable meals with friends and family.</p></article>
+</div></section>
+<section id="menu" class="menu">
+<div class="wrap">
+  <div class="sectionhead">
+    <div class="kicker">Explore our menu</div>
+    <h2>Asian flavors, made for you.</h2>
+    <p>Browse a few Bang'wi favorites, then send your order directly to our team on WhatsApp. We’ll confirm availability and pricing before your order is finalized.</p>
+  </div>
+  <div class="foodgrid">
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=85" alt="Ramen noodle bowl">
+      <div class="foodbody"><span class="foodtag">Japanese-inspired</span><h3>Shin Ramen Bowl</h3><p>Comforting, rich ramen-style noodle bowl. Available in vegetarian and non-vegetarian options.</p><button class="btn orderitem" data-item="Shin Ramen Bowl">Order this dish</button></div>
+    </article>
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=900&q=85" alt="Pad Thai noodles">
+      <div class="foodbody"><span class="foodtag">Thai-inspired</span><h3>Pad Thai Noodles</h3><p>Thai-inspired stir-fried noodles. Ask us for vegetarian, chicken or prawn options.</p><button class="btn orderitem" data-item="Pad Thai Noodles">Order this dish</button></div>
+    </article>
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1617622141675-d3005b9067d5?auto=format&fit=crop&w=900&q=85" alt="Hakka noodles">
+      <div class="foodbody"><span class="foodtag">Indo-Chinese</span><h3>Hakka Noodles</h3><p>Wok-tossed noodles with vegetables and your choice of protein.</p><button class="btn orderitem" data-item="Hakka Noodles">Order this dish</button></div>
+    </article>
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=85" alt="Fried rice">
+      <div class="foodbody"><span class="foodtag">Wok favorites</span><h3>Chinese Fried Rice</h3><p>A classic wok favorite. Ask for veg, chicken or prawn preparation.</p><button class="btn orderitem" data-item="Chinese Fried Rice">Order this dish</button></div>
+    </article>
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85" alt="Asian curry and rice">
+      <div class="foodbody"><span class="foodtag">Asian comfort</span><h3>Rice & Main Course</h3><p>Explore flavorful rice dishes and Asian-inspired mains from our kitchen.</p><button class="btn orderitem" data-item="Rice & Main Course">Order this dish</button></div>
+    </article>
+    <article class="foodcard">
+      <img src="https://images.unsplash.com/photo-1563243896-4f7e7e9b3e3c?auto=format&fit=crop&w=900&q=85" alt="Asian appetizer platter">
+      <div class="foodbody"><span class="foodtag">Start with a bite</span><h3>Asian Appetizers</h3><p>Start your meal with a selection of delicious Asian-inspired appetizers.</p><button class="btn orderitem" data-item="Asian Appetizers">Order this dish</button></div>
+    </article>
+  </div>
+  <p class="menu-note">Menu photos are illustrative. Actual dishes, options, prices and availability may vary. Please confirm with Bang'wi before your order is accepted.</p>
+  <div class="orderpanel" id="whatsapp-order">
+    <div><div class="kicker">Order directly</div><h2>What are you craving?</h2><p>Choose a dish and quantity. Your order request will open in WhatsApp for you to send to our team.</p></div>
+    <form id="orderForm">
+      <div class="full"><label for="orderDish">Dish *</label><select id="orderDish" required><option value="">Select a dish</option><option>Shin Ramen Bowl</option><option>Pad Thai Noodles</option><option>Hakka Noodles</option><option>Chinese Fried Rice</option><option>Rice & Main Course</option><option>Asian Appetizers</option>
+<option>Red Tea</option><option>Milk Tea</option><option>Black Coffee</option><option>Milk Coffee</option>
+<option>Fresh Lime Soda</option><option>Classic Virgin Mojito</option><option>Blue Lagoon</option><option>Kala Khatta</option><option>Berry Bliss Mojito</option><option>Cucumber Basil Smash</option><option>Apple Zest Mojito</option>
+<option>Classic Sweet Lassi</option><option>Cold Coffee</option><option>Mango Mastani Shake</option><option>Chocolate Milkshake</option><option>Classic Strawberry Shake</option><option>Kulfi Shakes</option><option>Oreo Shake</option><option>Blissful Blueberry Shake</option><option>Popcorn Caramel Shake</option>
+<option>Other / full menu request</option></select></div>
+      <div><label for="orderStyle">Preference *</label><select id="orderStyle" required><option value="">Choose preference</option><option>Vegetarian</option><option>Chicken</option><option>Prawn</option><option>Pork</option><option>Other / please discuss</option><option>Not applicable</option></select></div>
+      <div><label for="orderQty">Quantity *</label><select id="orderQty" required><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+      <div><label for="orderCustomer">Your name *</label><input id="orderCustomer" required placeholder="Full name"></div>
+      <div><label for="orderPhone">Your phone *</label><input id="orderPhone" type="tel" required placeholder="Contact number"></div>
+      <div class="full"><label for="orderAddress">Delivery address / pickup *</label><textarea id="orderAddress" required placeholder="Enter delivery address or write Pickup at restaurant"></textarea></div>
+      <div class="full"><label for="orderNotes">Extra instructions</label><textarea id="orderNotes" placeholder="Spice level, allergies, other dishes, etc."></textarea></div>
+      <div class="full"><button class="btn" type="submit">Send Order Request on WhatsApp</button><div class="hint">This sends an order request only. Our team will confirm the price, availability and delivery details on WhatsApp.</div></div>
+    </form>
+  </div>
+  
+</div>
 </section>
 
-<section id="menu">
-<h2>Our Menu</h2>
-<p>Explore our popular dishes. Contact us for prices and availability.</p>
-<div class="menu">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=700" alt="Ramen">
-<div><h3>Shin Ramen Bowl</h3><p>Rich and comforting Asian noodle bowl.</p><button onclick="choose('Shin Ramen Bowl')">Order Dish</button></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=700" alt="Pad Thai">
-<div><h3>Pad Thai Noodles</h3><p>Thai-inspired stir-fried noodles.</p><button onclick="choose('Pad Thai Noodles')">Order Dish</button></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1617622141675-d3005b9067d5?w=700" alt="Hakka noodles">
-<div><h3>Hakka Noodles</h3><p>Wok-tossed noodles with Asian flavours.</p><button onclick="choose('Hakka Noodles')">Order Dish</button></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=700" alt="Fried rice">
-<div><h3>Chinese Fried Rice</h3><p>Classic wok-fried rice.</p><button onclick="choose('Chinese Fried Rice')">Order Dish</button></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=700" alt="Asian food">
-<div><h3>Asian Main Course</h3><p>Explore delicious Asian specialties.</p><button onclick="choose('Asian Main Course')">Order Dish</button></div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1563243896-4f7e7e9b3e3c?w=700" alt="Asian appetizers">
-<div><h3>Asian Appetizers</h3><p>Delicious starters to begin your meal.</p><button onclick="choose('Asian Appetizers')">Order Dish</button></div>
-</div>
-
-</div>
+<section id="full-menu" class="fullmenu">
+  <div class="wrap">
+    <div class="sectionhead">
+      <div class="kicker">The complete Bang'wi menu</div>
+      <h2>Explore every page.</h2>
+      <p>Browse our full menu below. Tap any page to open the image larger.</p>
+    </div>
+    <div class="menu-pages">
+      <article class="menu-page-card"><a href="menu-pages/bangwi-menu-page-1.png" target="_blank" rel="noopener"><img src="menu-pages/bangwi-menu-page-1.png" alt="Bang'wi Pan Asian Bistro menu page 1" loading="lazy"></a><div class="menu-page-caption">Food Menu · Page 01</div></article>
+      <article class="menu-page-card"><a href="menu-pages/bangwi-menu-page-2.png" target="_blank" rel="noopener"><img src="menu-pages/bangwi-menu-page-2.png" alt="Bang'wi Pan Asian Bistro menu page 2" loading="lazy"></a><div class="menu-page-caption">Food Menu · Page 02</div></article>
+      <article class="menu-page-card"><a href="menu-pages/bangwi-menu-page-3.png" target="_blank" rel="noopener"><img src="menu-pages/bangwi-menu-page-3.png" alt="Bang'wi Pan Asian Bistro menu page 3" loading="lazy"></a><div class="menu-page-caption">Food Menu · Page 03</div></article>
+      <article class="menu-page-card"><a href="menu-pages/bangwi-menu-page-4.png" target="_blank" rel="noopener"><img src="menu-pages/bangwi-menu-page-4.png" alt="Bang'wi Pan Asian Bistro menu page 4" loading="lazy"></a><div class="menu-page-caption">Food Menu · Page 04</div></article>
+      <article class="menu-page-card"><a href="menu-pages/bangwi-menu-page-5.jpg" target="_blank" rel="noopener"><img src="menu-pages/bangwi-menu-page-5.jpg" alt="Bang'wi Pan Asian Bistro menu page 5" loading="lazy"></a><div class="menu-page-caption">Beverages & Mocktails</div></article>
+    </div>
+    <p class="menu-page-note">Menu and prices are shown as provided by Bang'wi Pan Asian Bistro. Please contact the restaurant to confirm current availability.</p>
+  </div>
 </section>
 
-<section id="order">
-<h2>Order on WhatsApp</h2>
-<p>Send your order request directly to Bang'wi.</p>
-<form onsubmit="sendOrder(event)">
-<label>Your Name</label>
-<input id="name" required placeholder="Your name">
-
-<label>Phone Number</label>
-<input id="phone" required placeholder="Your phone number">
-
-<label>Select Dish</label>
-<select id="dish">
-<option>Shin Ramen Bowl</option>
-<option>Pad Thai Noodles</option>
-<option>Hakka Noodles</option>
-<option>Chinese Fried Rice</option>
-<option>Asian Main Course</option>
-<option>Asian Appetizers</option>
-</select>
-
-<label>Preference</label>
-<select id="style">
-<option>Vegetarian</option>
-<option>Chicken</option>
-<option>Prawn</option>
-<option>Pork</option>
-</select>
-
-<label>Quantity</label>
-<input id="qty" type="number" min="1" value="1">
-
-<label>Delivery Address or Pickup</label>
-<textarea id="address" required placeholder="Enter address or pickup"></textarea>
-
-<label>Additional Instructions</label>
-<textarea id="notes" placeholder="Any special request"></textarea>
-
-<button type="submit">Send Order on WhatsApp</button>
-</form>
+<section id="drinks" class="drinks-section">
+  <div class="wrap">
+    <div class="sectionhead">
+      <div class="kicker">Bang'wi beverage menu · Page 05</div>
+      <h2>Something lovely to sip.</h2>
+      <p>Comforting hot beverages, refreshing mocktails and indulgent milk shakes—served at Bang'wi Pan Asian Bistro.</p>
+    </div>
+    <div class="drink-columns">
+      <div class="drink-panel">
+        <h3>Hot Beverages</h3>
+        <p class="drink-subtitle">Comfort in Every Sip</p>
+        <div class="drink-row"><div><h4>Red Tea</h4><p>Classic black tea, light and refreshing.</p></div><div class="drink-price">₹49</div></div>
+        <div class="drink-row"><div><h4>Milk Tea</h4><p>Traditional Indian-style tea with creamy milk.</p></div><div class="drink-price">₹59</div></div>
+        <div class="drink-row"><div><h4>Black Coffee</h4><p>Bold and aromatic brewed coffee.</p></div><div class="drink-price">₹79</div></div>
+        <div class="drink-row"><div><h4>Milk Coffee</h4><p>Smooth and creamy coffee with milk.</p></div><div class="drink-price">₹99</div></div>
+      </div>
+      <div class="drink-panel">
+        <h3>Mocktails</h3>
+        <p class="drink-subtitle">Refreshing, Fruity &amp; Full of Flavour</p>
+        <div class="drink-row"><div><h4>Fresh Lime Soda</h4><p>Zesty lime with soda, a classic refresher.</p></div><div class="drink-price">₹99</div></div>
+        <div class="drink-row"><div><h4>Classic Virgin Mojito</h4><p>A refreshing blend of lime, mint and soda.</p></div><div class="drink-price">₹139</div></div>
+        <div class="drink-row"><div><h4>Blue Lagoon</h4><p>Citrusy and cool with a vibrant blue twist.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Kala Khatta</h4><p>Tangy, sweet and desi—a nostalgic favourite.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Berry Bliss Mojito</h4><p>Mixed berries, mint and lime for a fruity fizz.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Cucumber Basil Smash</h4><p>A refreshing fusion of cucumber, basil and lime.</p></div><div class="drink-price">₹169</div></div>
+        <div class="drink-row"><div><h4>Apple Zest Mojito</h4><p>Crisp apple, fresh mint and a hint of citrus.</p></div><div class="drink-price">₹189</div></div>
+      </div>
+      <div class="drink-panel">
+        <h3>Milk Shakes</h3>
+        <p class="drink-subtitle">Rich, Creamy &amp; Indulgent</p>
+        <div class="drink-row"><div><h4>Classic Sweet Lassi</h4><p>Traditional yogurt-based drink, smooth and mildly sweet.</p></div><div class="drink-price">₹119</div></div>
+        <div class="drink-row"><div><h4>Cold Coffee</h4><p>Chilled coffee blended to a smooth and creamy delight.</p></div><div class="drink-price">₹149</div></div>
+        <div class="drink-row"><div><h4>Mango Mastani Shake</h4><p>Rich mango shake topped with ice cream and nuts.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Chocolate Milkshake</h4><p>Classic chocolate shake, rich and indulgent.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Classic Strawberry Shake</h4><p>Creamy strawberry shake with real fruit flavour.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Kulfi Shakes</h4><p>A royal blend of creamy kulfi and chilled milk.</p></div><div class="drink-price">₹159</div></div>
+        <div class="drink-row"><div><h4>Oreo Shake</h4><p>A crowd favourite with Oreo cookies and rich vanilla.</p></div><div class="drink-price">₹169</div></div>
+        <div class="drink-row"><div><h4>Blissful Blueberry Shake</h4><p>Creamy blueberry shake with a fruity and refreshing taste.</p></div><div class="drink-price">₹189</div></div>
+        <div class="drink-row"><div><h4>Popcorn Caramel Shake</h4><p>A unique blend of popcorn flavour and silky caramel.</p></div><div class="drink-price">₹189</div></div>
+      </div>
+    </div>
+    <p class="menu-note">Beverage names, descriptions and prices are transcribed from the menu image you shared (page 05/05). Please confirm availability with the restaurant.</p>
+    <div class="menu-cta"><a class="btn" href="#whatsapp-order">Order beverages on WhatsApp</a><span>Choose a drink in the order form below.</span></div>
+  </div>
 </section>
 
-<section>
-<h2>Visit Bang'wi</h2>
-<p>Airport Road, VIP Chowk, Borjhar, Guwahati, Assam 781015</p>
-<p>Near Guwahati Airport</p>
-<p>Phone: 096436 76050</p>
-<a href="https://maps.google.com/?q=Bangwi+Pan+Asian+Bistro+Guwahati">Find Us on Google Maps</a>
-</section>
-
-<footer>
-<p>Bang'wi Pan Asian Bistro</p>
-<p>Asian Flavours. Memorable Experiences.</p>
-</footer>
-
+<section class="wrap about"><div><div class="kicker">The Bang'wi experience</div><h2>Good food.<br>Good company.<br>Beautiful memories.</h2><p>Whether you're stopping by for a relaxed lunch, dinner with friends, or a special occasion, we look forward to welcoming you to Bang'wi Pan Asian Bistro.</p><a class="btn" href="#reservation">Plan Your Visit</a></div>
+<div class="aboutimg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Restaurant dining room"></div></section>
+<section id="reservation" class="reservation"><div class="wrap reservationgrid">
+<div><div class="kicker">Make it a date</div><h2>Reserve your<br>Bang'wi moment.</h2><p>Send us your preferred date, time and party size through WhatsApp. Our team can confirm availability directly with you.</p><p><strong>Reservation requests are not confirmed until the restaurant replies.</strong></p></div>
+<div><form id="bookingForm">
+<div><label for="guestName">Your name *</label><input id="guestName" name="guestName" required placeholder="Full name"></div>
+<div><label for="guestPhone">Phone number *</label><input id="guestPhone" name="guestPhone" required type="tel" placeholder="Your contact number"></div>
+<div><label for="bookingDate">Date *</label><input id="bookingDate" name="bookingDate" type="date" required></div>
+<div><label for="bookingTime">Preferred time *</label><input id="bookingTime" name="bookingTime" type="time" required></div>
+<div><label for="partySize">Guests *</label><select id="partySize" name="partySize" required><option value="">Select guests</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></div>
+<div><label for="occasion">Occasion</label><select id="occasion" name="occasion"><option>Dining</option><option>Birthday</option><option>Anniversary</option><option>Business meeting</option><option>Other</option></select></div>
+<div class="full"><label for="notes">Special requests (optional)</label><textarea id="notes" name="notes" placeholder="Any dietary needs or special requests?"></textarea></div>
+<div class="full"><button class="btn" type="submit">Send Reservation Request on WhatsApp</button><div class="hint">WhatsApp will open with your details ready to send.</div></div>
+</form></div>
+</div></section>
+<section id="visit" class="visit"><div class="wrap visitgrid">
+<div><div class="kicker" style="color:var(--gold)">Come say hello</div><h2>Your table<br>awaits.</h2><p>Visit us near Guwahati Airport and enjoy a delicious Pan-Asian dining experience.</p>
+<div class="social"><a class="btn outline" style="color:#fff" href="https://www.instagram.com/bangwibistro/" target="_blank" rel="noopener">Instagram @Bangwibistro</a><a class="btn outline" style="color:#fff" href="https://www.google.com/maps/search/?api=1&query=Bangwi+Pan+Asian+Bistro+VIP+Chowk+Guwahati" target="_blank" rel="noopener">Google Maps</a></div></div>
+<div><div class="contactline"><b>Address</b>AIRPORT ROAD, VIP Chowk, Borjhar,<br>Guwahati, Assam 781015</div>
+<div class="contactline"><b>Call us</b><a href="tel:+919643676050">096436 76050</a></div>
+<div class="contactline"><b>Online menu & ordering</b></div>
+<div class="contactline"><b>Find us</b><a href="https://www.google.com/maps/search/?api=1&query=Bangwi+Pan+Asian+Bistro+VIP+Chowk+Guwahati" target="_blank" rel="noopener">Open directions in Google Maps ↗</a></div></div>
+</div></section>
+</main>
+<footer><div class="wrap foot"><span>© Bang'wi Pan Asian Bistro. All rights reserved.</span><span>Guwahati, Assam · Pan-Asian dining</span></div></footer>
 <script>
-function choose(dish){
- document.getElementById('dish').value=dish;
- document.getElementById('order').scrollIntoView({behavior:'smooth'});
-}
-function sendOrder(e){
+
+document.querySelectorAll('.orderitem').forEach(button=>{
+ button.addEventListener('click',()=>{
+   document.getElementById('orderDish').value=button.dataset.item;
+   document.getElementById('whatsapp-order').scrollIntoView({behavior:'smooth'});
+ });
+});
+document.getElementById('orderForm').addEventListener('submit',function(e){
  e.preventDefault();
- const msg=`Hello Bang'wi Pan Asian Bistro!
-Name: ${name.value}
-Phone: ${phone.value}
-Dish: ${dish.value}
-Preference: ${style.value}
-Quantity: ${qty.value}
-Address/Pickup: ${address.value}
-Instructions: ${notes.value}`;
- window.open('https://wa.me/919643676050?text='+encodeURIComponent(msg),'_blank');
-}
+ const dish=document.getElementById('orderDish').value;
+ const style=document.getElementById('orderStyle').value;
+ const qty=document.getElementById('orderQty').value;
+ const name=document.getElementById('orderCustomer').value;
+ const phone=document.getElementById('orderPhone').value;
+ const address=document.getElementById('orderAddress').value;
+ const notes=document.getElementById('orderNotes').value||'None';
+ const message=`Hello Bang'wi Pan Asian Bistro! I'd like to place an order request.%0ADish: ${encodeURIComponent(dish)}%0APreference: ${encodeURIComponent(style)}%0AQuantity: ${encodeURIComponent(qty)}%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ADelivery/Pickup: ${encodeURIComponent(address)}%0AExtra instructions: ${encodeURIComponent(notes)}%0APlease confirm price and availability.`;
+ window.open('https://wa.me/919643676050?text='+message,'_blank','noopener');
+});
+
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const f=new FormData(this);
+ const msg=`Hello Bang'wi Pan Asian Bistro! I'd like to request a table.%0AName: ${encodeURIComponent(f.get('guestName'))}%0APhone: ${encodeURIComponent(f.get('guestPhone'))}%0ADate: ${encodeURIComponent(f.get('bookingDate'))}%0ATime: ${encodeURIComponent(f.get('bookingTime'))}%0AGuests: ${encodeURIComponent(f.get('partySize'))}%0AOccasion: ${encodeURIComponent(f.get('occasion'))}%0ASpecial requests: ${encodeURIComponent(f.get('notes')||'None')}`;
+ window.open('https://wa.me/919643676050?text='+msg,'_blank','noopener');
+});
 </script>
 </body>
 </html>
