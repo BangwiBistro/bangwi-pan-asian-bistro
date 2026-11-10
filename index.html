@@ -68,9 +68,9 @@ footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justi
 #reviews{max-width:none;width:100%;padding:88px max(4%,calc((100% - 1140px)/2));background:linear-gradient(135deg,rgba(20,31,25,.88),rgba(20,31,25,.76)),url('bangwi-restaurant-interior.jpg') center/cover fixed;color:#fff}
 #reviews .sectionhead p{color:#e1ded5}
 #reviews .kicker{color:var(--gold)}
-.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;align-items:stretch;gap:20px}
 .review-card{background:rgba(255,250,242,.97);color:var(--ink);border:1px solid rgba(199,155,85,.45);padding:25px 24px;min-height:260px;display:flex;flex-direction:column;box-shadow:0 14px 35px rgba(0,0,0,.16);position:relative}
-.review-card:after{content:'🥢';position:absolute;left:50%;top:48%;transform:translate(-50%,-50%) rotate(-18deg);font-size:76px;opacity:.13;z-index:0;pointer-events:none;filter:grayscale(.35)}
+.review-card:after{content:'🥢';position:absolute;left:50%;top:48%;transform:translate(-50%,-50%) rotate(-18deg);font-size:112px;opacity:.28;z-index:0;pointer-events:none;filter:none;text-shadow:0 1px 2px rgba(70,45,15,.18)}
 .review-card>*{position:relative;z-index:1}
 .review-quote{font:42px/1 Georgia,serif;color:var(--gold);margin-bottom:8px}
 .review-rating{display:flex;align-items:center;justify-content:space-between;color:var(--gold);font-size:17px;letter-spacing:2px;margin:0 0 12px}
