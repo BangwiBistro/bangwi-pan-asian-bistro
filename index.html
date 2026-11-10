@@ -62,6 +62,25 @@ footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justi
 .drink-row p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
 .drink-price{font-weight:700;color:#27613a;white-space:nowrap}
 .drink-order{margin-top:18px}
+
+/* Guest reviews */
+#reviews{max-width:none;width:100%;padding:88px max(4%,calc((100% - 1140px)/2));background:linear-gradient(135deg,rgba(20,31,25,.88),rgba(20,31,25,.76)),url('bangwi-restaurant-interior.jpg') center/cover fixed;color:#fff}
+#reviews .sectionhead p{color:#e1ded5}
+#reviews .kicker{color:var(--gold)}
+.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.review-card{background:rgba(255,250,242,.97);color:var(--ink);border:1px solid rgba(199,155,85,.45);padding:25px 24px;min-height:260px;display:flex;flex-direction:column;box-shadow:0 14px 35px rgba(0,0,0,.16);position:relative}
+.review-quote{font:42px/1 Georgia,serif;color:var(--gold);margin-bottom:8px}
+.review-card blockquote{margin:0 0 22px;font:18px/1.65 Georgia,serif;color:#344139;flex:1}
+.review-person{display:flex;align-items:center;gap:12px;border-top:1px solid #e8dfd1;padding-top:16px}
+.review-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#e9dfce;flex:none}
+.review-initial{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#1d2922;color:#e8c88e;font:18px Georgia,serif;border:2px solid var(--gold);flex:none}
+.review-name{font-weight:700;font-size:14px;letter-spacing:.2px}
+.review-source{font-size:11px;color:#7a8079;margin-top:4px}
+#reviews .review-link{margin-top:32px}
+#reviews .review-link .btn{background:var(--gold);color:#201a12;border:0}
+@media(max-width:850px){.review-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#reviews{background-attachment:scroll}}
+@media(max-width:560px){.review-grid{grid-template-columns:1fr}.review-card{min-height:220px}#reviews{padding:58px 4%}}
+
 @media(max-width:760px){.drink-columns{grid-template-columns:1fr}.drink-panel{padding:22px}}
 
 @media(max-width:900px){.foodgrid{grid-template-columns:repeat(2,1fr)}.orderpanel{grid-template-columns:1fr}}
@@ -211,51 +230,56 @@ footer{padding:25px 0;color:var(--muted);font-size:12px}.foot{display:flex;justi
 
 <section class="wrap about"><div><div class="kicker">The Bang'wi experience</div><h2>Good food.<br>Good company.<br>Beautiful memories.</h2><p>Whether you're stopping by for a relaxed lunch, dinner with friends, or a special occasion, we look forward to welcoming you to Bang'wi Pan Asian Bistro.</p><a class="btn" href="#reservation">Plan Your Visit</a></div><div class="aboutimg"><img src="bangwi-restaurant-interior.jpg" alt="Bang’wi Pan Asian Bistro restaurant interior with decorative tree and cozy seating" loading="lazy"></div></section>
 
-<section id="reviews" class="wrap">
+<section id="reviews">
   <div class="sectionhead">
     <div class="kicker">Guest experiences</div>
     <h2>Loved by our guests.</h2>
-    <p>Real words from guests who have shared a table with us at Bang'wi.</p>
+    <p>Kind words and memorable moments shared by the Bang'wi community.</p>
   </div>
-  <div class="cards">
-    <article class="card">
-      <div class="num" aria-label="5 out of 5 stars">★★★★★</div>
-      <h3>“Tasty and filling.”</h3>
-      <p>“I’ve kept coming here after work for months because their budget bowls stay tasty and filling.”</p>
-      <p><strong>JESTER</strong><br><span style="font-size:12px;color:var(--muted)">Google review · 3 weeks ago</span></p>
-      <div class="num">Food 5/5 · Service 5/5 · Atmosphere 5/5</div>
+  <div class="review-grid">
+    <article class="review-card">
+      <div class="review-quote">“</div>
+      <blockquote>I’ve kept coming here after work for months because their budget bowls stay tasty and filling.</blockquote>
+      <div class="review-person">
+        <img class="review-avatar" src="https://lh3.googleusercontent.com/a-/ALV-UjUzAgR7TizItJwnO7BAxGnsiFf9q3M1hKbabN3J5e09hUQ4D3KX=w54-h54-p-rp-mo-br100" alt="JESTER profile photo" loading="lazy">
+        <div><div class="review-name">JESTER</div><div class="review-source">Guest review on Google</div></div>
+      </div>
     </article>
-    <article class="card">
-      <div class="num" aria-label="5 out of 5 stars">★★★★★</div>
-      <h3>“Reasonable prices, generous portions.”</h3>
-      <p>“Price is reasonable and the quantity and taste of food prepared is good. The staff are well behaved and gentle.”</p>
-      <p><strong>Riyanka Chakraborty</strong><br><span style="font-size:12px;color:var(--muted)">Google review · 5 months ago</span></p>
-      <div class="num">Food 5/5 · Service 5/5 · Atmosphere 5/5</div>
-      <p style="font-size:12px;color:var(--muted)">Lunch · ₹400–600 per person</p>
+    <article class="review-card">
+      <div class="review-quote">“</div>
+      <blockquote>Price is reasonable and the quantity and taste of food prepared is good. The staff are well behaved and gentle.</blockquote>
+      <div class="review-person">
+        <div class="review-initial" aria-hidden="true">R</div>
+        <div><div class="review-name">Riyanka Chakraborty</div><div class="review-source">Guest review on Google</div></div>
+      </div>
     </article>
-    <article class="card">
-      <div class="num" aria-label="5 out of 5 stars">★★★★★</div>
-      <h3>“A lovely place to hang out.”</h3>
-      <p>“Good place to hangout and enjoy delicious 😋 food”</p>
-      <p><strong>Sikha rani Tirkey</strong><br><span style="font-size:12px;color:var(--muted)">Google review · 3 weeks ago</span></p>
-      <div class="num">Food 5/5 · Service 5/5 · Atmosphere 5/5</div>
+    <article class="review-card">
+      <div class="review-quote">“</div>
+      <blockquote>Good place to hangout and enjoy delicious 😋 food</blockquote>
+      <div class="review-person">
+        <div class="review-initial" aria-hidden="true">S</div>
+        <div><div class="review-name">Sikha rani Tirkey</div><div class="review-source">Guest review on Google</div></div>
+      </div>
     </article>
-    <article class="card">
-      <div class="num" aria-label="5 out of 5 stars">★★★★★</div>
-      <h3>“Awesome taste — must try!”</h3>
-      <p>“Awesome Taste...Must Try if nearby to Vip Chowk in Guwahati Airport Area”</p>
-      <p><strong>SHANKAR DEV</strong><br><span style="font-size:12px;color:var(--muted)">Google review · 6 months ago</span></p>
-      <div class="num">Food 5/5 · Service 5/5 · Atmosphere 5/5</div>
-      <p style="font-size:12px;color:var(--muted)">Dinner · ₹200–400 per person</p>
+    <article class="review-card">
+      <div class="review-quote">“</div>
+      <blockquote>Awesome Taste...Must Try if nearby to Vip Chowk in Guwahati Airport Area</blockquote>
+      <div class="review-person">
+        <div class="review-initial" aria-hidden="true">S</div>
+        <div><div class="review-name">SHANKAR DEV</div><div class="review-source">Guest review on Google</div></div>
+      </div>
     </article>
-    <article class="card">
-      <h3>“A wonderful, homely experience.”</h3>
-      <p>“Thanks guys u r so homely and sweet. Had a wonderful time at this place from had come from Delhi”</p>
-      <p><strong>Sanjib Gogoi</strong><br><span style="font-size:12px;color:var(--muted)">Google review · 5 months ago</span></p>
+    <article class="review-card">
+      <div class="review-quote">“</div>
+      <blockquote>Thanks guys u r so homely and sweet. Had a wonderful time at this place from had come from Delhi</blockquote>
+      <div class="review-person">
+        <img class="review-avatar" src="https://lh3.googleusercontent.com/a/ACg8ocJjbiWDtjAyTzFD1nxpxDvb8ww_SYGvCWWVcQ5oZXFUz91sgw=w54-h54-p-rp-mo-br100" alt="Sanjib Gogoi profile photo" loading="lazy">
+        <div><div class="review-name">Sanjib Gogoi</div><div class="review-source">Guest review on Google</div></div>
+      </div>
     </article>
   </div>
-  <div style="text-align:center;margin-top:30px">
-    <a class="btn outline" href="https://www.google.com/maps/search/?api=1&query=Bangwi+Pan+Asian+Bistro+VIP+Chowk+Guwahati" target="_blank" rel="noopener">Read more reviews on Google</a>
+  <div class="review-link" style="text-align:center">
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Bangwi+Pan+Asian+Bistro+VIP+Chowk+Guwahati" target="_blank" rel="noopener">Read more guest reviews on Google</a>
   </div>
 </section>
 
