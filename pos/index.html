@@ -106,6 +106,65 @@ table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;p
 #page-pos .pos-customer-fields{display:grid;grid-template-columns:1fr;gap:7px;margin-bottom:12px}
 #page-pos .pos-customer-fields input{width:100%;min-width:0;background:#101f30;color:#fff;border-color:#34465c}
 #page-pos .pos-customer-fields input::placeholder{color:#9eafc2}
+
+/* Bang'wi premium black, cream and gold POS visual refresh */
+body{background:#080a0d}
+header{background:linear-gradient(100deg,#050607 0%,#11100d 58%,#050607 100%);border-bottom:1px solid #9d7838;box-shadow:0 4px 22px #0008}
+.brand{color:#f0d28d!important;text-shadow:0 1px 12px #b98b3940}
+.brand small{color:#d4bd8c!important}
+#page-pos.pos-screen{background:radial-gradient(ellipse at 50% -15%,#302313 0%,#11100d 35%,#07090c 78%);border:1px solid #765a2c;border-radius:15px;padding:14px;box-shadow:0 16px 44px #0009;min-height:calc(100vh - 105px)}
+#page-pos .pos-topbar{grid-template-columns:minmax(220px,1fr) 170px 185px 0;gap:10px}
+#page-pos .pos-search{background:linear-gradient(180deg,#171717,#090a0c);border:1px solid #65502d;border-radius:9px;box-shadow:inset 0 1px #ffffff0d}
+#page-pos .pos-search span{color:#e3bd65}
+#page-pos .pos-search input{color:#fff}
+#page-pos .pos-search input::placeholder{color:#a99c83}
+#page-pos .pos-search button,#page-pos .pos-top-action{background:linear-gradient(180deg,#24211a,#101114);color:#f5e8c9;border:1px solid #66512f;border-radius:9px}
+#page-pos .pos-workspace{grid-template-columns:300px minmax(0,1fr);gap:12px;min-height:610px}
+#page-pos .panel{background:linear-gradient(155deg,#171716,#0b0c0e 75%);border:1px solid #514329;border-radius:13px;color:#f7f1e4;box-shadow:0 8px 24px #0006}
+#page-pos .pos-cart{padding:13px}
+#page-pos .pos-cart-head{border-bottom:1px solid #4b3c25}
+#page-pos .pos-cart-head b{font: bold 17px Georgia,serif;color:#f3d58e}
+#page-pos .pos-cart-head small{color:#b9a987}
+#page-pos .pos-bell{background:linear-gradient(145deg,#d2a94e,#76511d);color:#120e08}
+#page-pos .pos-meta select,#page-pos .pos-customer-fields input,#page-pos .pos-totals input,#page-pos .pos-totals select,#page-pos .pos-payment select{background:#111214;color:#fff;border:1px solid #5c4a2c;border-radius:7px}
+#page-pos .pos-customer-fields input::placeholder{color:#a99c83}
+#page-pos .pos-cart-label{color:#d0bd91;border-color:#493b26}
+#page-pos .lineitem{color:#f4eee1;border-color:#403522}
+#page-pos .lineitem .muted{color:#b8a985}
+#page-pos .qty button{background:#29251c;color:#f8e6bb;border:1px solid #806537}
+#page-pos .pos-totals{border-color:#57452b}
+#page-pos .pos-totals label{color:#c7b58f}
+#page-pos #totals .total{color:#e8dfcb}
+#page-pos #totals .grand{color:#ffd65f;border-color:#6e5429;font-size:22px;font-weight:800}
+#page-pos .pos-pay-actions button{border-radius:8px;font-weight:700}
+#page-pos .pos-pay-actions .gold{background:linear-gradient(180deg,#e4c16c,#a4772d);color:#171108;border:1px solid #f0d48d}
+#page-pos .pos-pay-actions .primary{background:linear-gradient(180deg,#159447,#08702f);color:#fff;border:1px solid #39cf78}
+#page-pos .pos-catalog{padding:12px 166px 12px 12px}
+#page-pos .pos-catalog-heading{margin:3px 0 12px;padding:2px 2px 10px;border-bottom:1px solid #594529}
+#page-pos .pos-catalog-heading b{font: bold 18px Georgia,serif;color:#f2d18b;letter-spacing:.3px}
+#page-pos .pos-catalog-heading span{color:#c0b18f}
+#page-pos .menu-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+#page-pos .food-card{position:relative;background:linear-gradient(150deg,#242019,#0e0f11 70%);border:1px solid #765c32;border-radius:11px;padding:7px;color:#fff7e8;min-height:174px;box-shadow:0 4px 12px #0007;transition:transform .15s,border-color .15s,box-shadow .15s}
+#page-pos .food-card:hover{transform:translateY(-2px);border-color:#e0b95c;box-shadow:0 7px 18px #000a,0 0 0 1px #d7ad5340}
+#page-pos .food-card img{height:100px;object-fit:cover;border-radius:7px;border:1px solid #4a3a25}
+#page-pos .food-card strong{font-size:12px;line-height:1.25;color:#fff8e9;margin:6px 0 3px;min-height:30px}
+#page-pos .food-card>span:not(.stock-badge){color:#ffd34f;font-size:15px;font-weight:800}
+#page-pos .food-card small{color:#c7b995}
+#page-pos .food-controls{gap:5px}
+#page-pos .food-controls button{background:#29251d;color:#ffe5a3;border:1px solid #8d6d37;border-radius:5px}
+#page-pos .stock-badge{background:#1c3028;color:#a8e4bd;border:1px solid #38664b}
+#page-pos .category-nav{width:148px;right:9px;top:52px;bottom:12px;gap:6px}
+#page-pos .category-nav button{background:linear-gradient(180deg,#24221d,#111214);color:#f0e5ce;border:1px solid #55452c;padding:12px 9px;border-radius:9px;font-size:12px}
+#page-pos .category-nav button:hover,#page-pos .category-nav button.selected{background:linear-gradient(180deg,#49391d,#211a10);border-color:#e0b54e;color:#ffdc77;box-shadow:0 0 12px #b68b3330}
+#page-pos .pos-bottom-tools{grid-template-columns:repeat(6,1fr);gap:8px}
+#page-pos .pos-bottom-tools button{background:linear-gradient(180deg,#24231f,#101114);border:1px solid #65502f;color:#f6d36f;border-radius:9px;padding:10px;box-shadow:0 4px 12px #0005}
+#page-pos .pos-bottom-tools small{color:#f3ead8}
+#page-pos .notice{background:#1b1914;color:#d9c79f;border:1px solid #514127}
+#page-pos .muted{color:#b9aa8a}
+@media(max-width:1250px){#page-pos .pos-workspace{grid-template-columns:270px minmax(0,1fr)}#page-pos .menu-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1050px){#page-pos .pos-workspace{grid-template-columns:250px minmax(0,1fr)}#page-pos .pos-catalog{padding-right:140px}#page-pos .category-nav{width:122px}#page-pos .menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){#page-pos .pos-workspace{grid-template-columns:1fr}#page-pos .pos-cart,#page-pos .pos-catalog{grid-column:1;grid-row:auto}#page-pos .pos-catalog{padding:12px}#page-pos .category-nav{position:static;width:auto;max-height:130px;flex-direction:row;flex-wrap:wrap;margin-top:10px}#page-pos .category-nav button{width:auto}#page-pos .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#page-pos .pos-bottom-tools{grid-template-columns:repeat(3,1fr)}}
+
 </style></head>
 <body>
 
