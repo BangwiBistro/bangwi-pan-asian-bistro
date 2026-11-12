@@ -385,22 +385,32 @@ function bangwiQueueCloudSave() {
   clearTimeout(bangwiCloudSaveTimer);
   bangwiCloudSaveTimer = setTimeout(bangwiSaveCloudState, 700);
 }
+function bangwiEnsureSupabaseClient() {
+  if (bangwiSupabase) return bangwiSupabase;
+  if (!window.supabase || typeof window.supabase.createClient !== "function") {
+    throw new Error("Supabase sign-in library did not load. Refresh the page or check your internet connection.");
+  }
+  if (!BANGWI_CLOUD_CONFIG.SUPABASE_URL.startsWith("https://") ||
+      !BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY ||
+      BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE_")) {
+    throw new Error("Cloud setup is incomplete. Check the Supabase project URL and publishable key.");
+  }
+  try { bangwiEnsureSupabaseClient(); }
+  catch (e) { bangwiSetLoginMessage(e.message); return; }
+  return bangwiSupabase;
+}
 async function bangwiSignIn() {
   const email = document.getElementById("cloudEmail").value.trim();
   const password = document.getElementById("cloudPassword").value;
   const btn = document.getElementById("cloudSignIn");
   if (!email || !password) { bangwiSetLoginMessage("Enter your email and password."); return; }
-  if (!window.supabase || !BANGWI_CLOUD_CONFIG.SUPABASE_URL.startsWith("https://") ||
-      BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE_")) {
-    bangwiSetLoginMessage("Cloud setup is incomplete. Add your Supabase Project URL and anon public key in this HTML file, then upload it again.");
-    return;
-  }
   btn.disabled = true; btn.textContent = "Signing in…";
   try {
-    const { data, error } = await bangwiSupabase.auth.signInWithPassword({ email, password });
+    const client = bangwiEnsureSupabaseClient();
+    const { data, error } = await client.auth.signInWithPassword({ email, password });
     if (error) throw error;
     bangwiCloudUser = data.user;
-    const { data: row, error: readError } = await bangwiSupabase.from("restaurant_state")
+    const { data: row, error: readError } = await client.from("restaurant_state")
       .select("data").eq("restaurant_id", BANGWI_CLOUD_CONFIG.RESTAURANT_ID).maybeSingle();
     if (readError) throw readError;
     if (row && row.data) {
