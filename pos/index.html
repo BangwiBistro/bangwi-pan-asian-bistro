@@ -419,10 +419,15 @@ async function bangwiSignIn() {
       Object.keys(localStorage).filter(k => k.startsWith("bw3_")).forEach(k => localStorage.removeItem(k));
       bangwiRestoreSnapshot(row.data);
     }
-    // Reload once so the existing v4.3 data variables initialise from the cloud snapshot.
-    // Supabase persists the signed-in session across this reload.
-    sessionStorage.setItem("bangwi_cloud_restore_reload", "1");
-    location.reload();
+    // Initialise the POS directly after successful authentication.
+    // Avoid a page reload here: some browsers return to the login screen
+    // before the Supabase session has been restored from storage.
+    sessionStorage.removeItem("bangwi_cloud_restore_reload");
+    bangwiCloudReady = true;
+    document.getElementById("cloudLogin").style.display = "none";
+    bangwiSetCloudStatus("Cloud: connected", "#b9e5c5");
+    if (typeof window.bangwiAppInit === "function") window.bangwiAppInit();
+    if (!row) await bangwiSaveCloudState();
   } catch (e) {
     console.error("Bang'wi sign-in:", e);
     bangwiSetLoginMessage(
