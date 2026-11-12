@@ -411,28 +411,23 @@ async function bangwiSignIn() {
     const { data, error } = await client.auth.signInWithPassword({ email, password });
     if (error) throw error;
     bangwiCloudUser = data.user;
-    let row = null;
-    let cloudReadFailed = false;
-    const { data: cloudRow, error: readError } = await client.from("restaurant_state")
+    const { data: row, error: readError } = await client.from("restaurant_state")
       .select("data").eq("restaurant_id", BANGWI_CLOUD_CONFIG.RESTAURANT_ID).maybeSingle();
-    if (readError) {
-      // A cloud-table/RLS problem must not lock an authenticated staff member
-      // out of the POS. Keep browser data intact and continue in local mode.
-      console.error("Bang'wi cloud data read:", readError);
-      cloudReadFailed = true;
-    } else {
-      row = cloudRow;
-      if (row && row.data) {
-        Object.keys(localStorage).filter(k => k.startsWith("bw3_")).forEach(k => localStorage.removeItem(k));
-        bangwiRestoreSnapshot(row.data);
-      }
+    if (readError) throw readError;
+    if (row && row.data) {
+      // Cloud is authoritative at sign-in. Load it before the app initializes.
+      Object.keys(localStorage).filter(k => k.startsWith("bw3_")).forEach(k => localStorage.removeItem(k));
+      bangwiRestoreSnapshot(row.data);
     }
+    // Initialise the POS directly after successful authentication.
+    // Avoid a page reload here: some browsers return to the login screen
+    // before the Supabase session has been restored from storage.
     sessionStorage.removeItem("bangwi_cloud_restore_reload");
-    bangwiCloudReady = !cloudReadFailed;
+    bangwiCloudReady = true;
     document.getElementById("cloudLogin").style.display = "none";
-    bangwiSetCloudStatus(cloudReadFailed ? "Cloud: access issue · local mode" : "Cloud: connected", cloudReadFailed ? "#f0d9a9" : "#b9e5c5");
+    bangwiSetCloudStatus("Cloud: connected", "#b9e5c5");
     if (typeof window.bangwiAppInit === "function") window.bangwiAppInit();
-    if (!cloudReadFailed && !row) await bangwiSaveCloudState();
+    if (!row) await bangwiSaveCloudState();
   } catch (e) {
     console.error("Bang'wi sign-in:", e);
     bangwiSetLoginMessage(
@@ -506,14 +501,7 @@ window.bootBangwiCloud = async function(appInit) {
     if (!row) await bangwiSaveCloudState();
   } catch (e) {
     console.error("Bang'wi cloud load:", e);
-    // The user is already authenticated. If cloud data access fails, preserve
-    // local browser data and keep the POS usable instead of trapping the user
-    // behind the sign-in overlay.
-    bangwiCloudReady = false;
-    document.getElementById("cloudLogin").style.display = "none";
-    bangwiSetCloudStatus("Cloud: access issue · local mode", "#f0d9a9");
-    if (typeof window.bangwiAppInit === "function") window.bangwiAppInit();
-    alert("You are signed in, but the cloud data table could not be read. The POS has opened in local mode. Please ask the owner to check Supabase table permissions before relying on cloud sync.");
+    bangwiSetLoginMessage(e.message || "Unable to load the cloud workspace.");
   }
 };
 
