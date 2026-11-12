@@ -48,6 +48,60 @@ table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;p
 #cloudLogin .login-note{font-size:12px;color:#666;line-height:1.5}
 #cloudStatus{font-size:11px;color:#c8c0b1}
 
+ 
+/* Quick POS: dark touchscreen layout inspired by the supplied TIVA reference */
+#page-pos.pos-screen{background:#07111e;color:#edf3fb;border:1px solid #26384d;border-radius:16px;padding:14px;min-height:calc(100vh - 110px);box-shadow:0 12px 35px rgba(0,0,0,.22)}
+#page-pos .pos-topbar{display:grid;grid-template-columns:minmax(240px,1fr) 150px 175px 0;gap:10px;align-items:center;margin-bottom:12px}
+#page-pos .pos-search{display:flex;align-items:center;background:#111e2d;border:1px solid #34465c;border-radius:10px;overflow:hidden;min-width:0}
+#page-pos .pos-search span{padding:0 12px;color:#aebed0;font-size:22px}
+#page-pos .pos-search input{flex:1;min-width:0;background:transparent;color:#fff;border:0;outline:0}
+#page-pos .pos-search button,.pos-top-action{background:#172638;color:#e9f0f8;border:1px solid #34465c}
+#page-pos .pos-top-action{height:42px}
+#page-pos #category{opacity:0;pointer-events:none;width:1px;padding:0;border:0}
+#page-pos .pos-workspace{display:grid;grid-template-columns:280px minmax(0,1fr);gap:12px;min-height:560px}
+#page-pos .panel{background:#0d1a29;border:1px solid #263a50;border-radius:12px;color:#eaf1f9;padding:12px}
+#page-pos .pos-cart{grid-column:1;grid-row:1;display:flex;flex-direction:column;min-width:0}
+#page-pos .pos-cart-head{display:flex;align-items:center;gap:10px;padding:5px 4px 14px;border-bottom:1px solid #26384c}
+#page-pos .pos-bell{background:#a87918;color:#fff;border-radius:50%;padding:10px}
+#page-pos .pos-cart-head small{display:block;color:#9eafc2;font-size:10px;margin-top:3px}
+#page-pos .pos-meta{display:flex;gap:6px;margin:10px 0}
+#page-pos .pos-meta select{min-width:0;flex:1;background:#142438;color:#eaf1f9;border-color:#34465c}
+#page-pos .pos-customer{width:100%;background:#101f30;color:#fff;border-color:#34465c;margin-bottom:12px}
+#page-pos .pos-cart-label{display:grid;grid-template-columns:1fr 48px 72px;gap:4px;color:#9eafc2;font-size:10px;padding:8px 3px;border-bottom:1px solid #26384c}
+#page-pos #cart{min-height:120px;max-height:260px;overflow:auto}
+#page-pos .lineitem{color:#eaf1f9;border-color:#27394d;font-size:12px}
+#page-pos .lineitem .muted{color:#9eafc2}
+#page-pos .qty button{background:#1c3046;color:#fff;border-color:#3a5068}
+#page-pos .pos-totals{margin-top:auto;border-top:1px solid #293c50;padding-top:8px}
+#page-pos .pos-totals .field{margin:6px 0}
+#page-pos .pos-totals label{color:#9eafc2;font-size:11px}
+#page-pos .pos-totals input,#page-pos .pos-totals select,#page-pos .pos-payment select{width:100%;background:#132438;color:#fff;border-color:#34465c}
+#page-pos #totals .total{color:#dce7f4;padding:5px 2px}
+#page-pos #totals .grand{font-size:20px;color:#83aaff;border-color:#34465c}
+#page-pos .pos-payment{margin:10px 0}
+#page-pos .pos-pay-actions{display:grid;grid-template-columns:1fr 1fr}
+#page-pos .pos-pay-actions button{padding:13px 6px}
+#page-pos .pos-catalog{grid-column:2;grid-row:1;position:relative;padding:12px 170px 12px 12px;min-width:0}
+#page-pos .pos-catalog-heading{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:3px 0 12px}
+#page-pos .pos-catalog-heading span{font-size:11px;color:#9eafc2}
+#page-pos .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:0!important}
+#page-pos .food-card{background:linear-gradient(145deg,#15263a,#0c1725);border:1px solid #33465d;border-radius:10px;padding:9px;color:#f1f5fb;min-height:180px;cursor:pointer}
+#page-pos .food-card img{height:100px;object-fit:cover;border-radius:7px}
+#page-pos .food-card strong{display:block;margin:7px 0 4px;font-size:13px}
+#page-pos .food-card>span:not(.stock-badge){color:#fff;font-weight:700}
+#page-pos .food-card small{color:#a9b9ca}
+#page-pos .food-controls button{background:#21364d;color:#fff;border-color:#48617c}
+#page-pos .stock-badge{background:#173a32;color:#9de5c1;border:1px solid #2e6d57}
+#page-pos .category-nav{position:absolute;right:10px;top:52px;bottom:12px;width:148px;overflow:auto;display:flex;flex-direction:column;gap:6px;margin:0}
+#page-pos .category-nav button{width:100%;text-align:left;background:#172638;color:#e3ebf5;border:1px solid #30445b;padding:11px 10px;border-radius:9px;font-size:12px}
+#page-pos .category-nav button.selected{background:#30291d;border-color:#d3a33b;color:#ffd779}
+#page-pos .pos-bottom-tools{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+#page-pos .pos-bottom-tools button{background:#142337;border:1px solid #34475d;color:#f0f4f9;padding:9px;display:flex;flex-direction:column;gap:3px;align-items:center;font-size:18px}
+#page-pos .pos-bottom-tools small{font-size:10px;color:#bdc9d7}
+#page-pos .notice{background:#17283b;color:#b8c9dc}
+#page-pos .muted{color:#9eafc2}
+@media(max-width:1050px){#page-pos .pos-workspace{grid-template-columns:250px minmax(0,1fr)}#page-pos .pos-catalog{padding-right:145px}#page-pos .category-nav{width:125px}#page-pos .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){#page-pos.pos-screen{padding:8px}#page-pos .pos-topbar{grid-template-columns:1fr 1fr}#page-pos .pos-search{grid-column:1/-1}#page-pos .pos-workspace{grid-template-columns:1fr}#page-pos .pos-cart,#page-pos .pos-catalog{grid-column:1;grid-row:auto}#page-pos .pos-catalog{padding:12px}#page-pos .category-nav{position:static;width:auto;max-height:120px;flex-direction:row;flex-wrap:wrap;margin-top:10px}#page-pos .category-nav button{width:auto}#page-pos .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#page-pos .pos-bottom-tools{grid-template-columns:repeat(3,1fr)}}
 </style></head>
 <body>
 
@@ -101,26 +155,27 @@ table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;p
  <div style="padding:16px 10px;color:#9f988b;font-size:11px">Bang'wi Pan Asian Bistro<br>VIP Chowk · Guwahati</div>
 </aside>
 <main>
- <section id="page-pos">
-  <div class="pagehead"><div><h1>Quick POS</h1><div class="muted">Fast order entry for cashier · simple service workflow</div></div><span class="pill">58mm receipt setup planned</span></div>
-  <div class="layout">
-   <div class="panel">
-    <div class="row"><input id="search" placeholder="Search dishes…" oninput="renderProducts()" style="flex:1"><select id="category" onchange="setPosCategory(this.value)"><option>All categories</option></select></div><div id="posCategoryNav" class="category-nav"></div>
-    <div id="products" class="menu-grid" style="margin-top:12px"></div>
+ <section id="page-pos" class="pos-screen">
+  <div class="pos-topbar"><div class="pos-search"><span>⌕</span><input id="search" placeholder="Search dishes / barcode…" oninput="renderProducts()"><button type="button" onclick="$('search').focus()">Search</button></div><button type="button" class="pos-top-action" onclick="$('orderType').focus()">☰ &nbsp; Order Type</button><button type="button" class="pos-top-action" onclick="$('customer').focus()">♙ &nbsp; Customer Details</button><select id="category" onchange="setPosCategory(this.value)" aria-label="Category filter"><option>All categories</option></select></div>
+  <div class="pos-workspace">
+   <div class="pos-cart panel">
+    <div class="pos-cart-head"><span class="pos-bell">●</span><div><b>Current Order</b><small>Order items / Cashier</small></div></div>
+    <div class="pos-meta"><select id="orderType"><option>Dine-in</option><option>Takeaway</option><option>Delivery</option><option>QR order</option></select><select id="tableSelect"><option value="">Choose table</option></select></div>
+    <input id="customer" placeholder="Customer name (optional)" class="pos-customer">
+    <div class="pos-cart-label"><span>ITEM</span><span>QTY</span><span>AMOUNT</span></div>
+    <div id="cart"><p class="muted">No items yet.</p></div>
+    <div id="cartQtySummary" class="notice">Total items selected: 0</div>
+    <div class="pos-totals"><div class="field"><label>Discount ₹</label><input id="discount" type="number" min="0" value="0" oninput="renderCart()"></div><div class="field"><label>GST rate %</label><input id="gst" type="number" min="0" step=".01" value="0" oninput="renderCart()"></div><div class="field"><select id="gstMode" onchange="renderCart()"><option value="exclusive">GST added to prices</option><option value="inclusive">GST included in prices</option></select></div><div id="totals"></div></div>
+    <div class="pos-payment"><select id="payment"><option>Cash</option><option>UPI</option><option>Card</option><option>Unpaid</option></select></div>
+    <div class="row pos-pay-actions"><button class="gold" onclick="saveOrder('New')">Send KOT</button><button class="primary" onclick="saveOrder('Billed')">Pay / Save Bill</button></div>
    </div>
-   <div class="panel">
-    <h2>Current order</h2>
-    <div class="row"><select id="orderType"><option>Dine-in</option><option>Takeaway</option><option>Delivery</option><option>QR order</option></select><select id="tableSelect"><option value="">Choose table</option></select></div>
-    <div class="field"><input id="customer" placeholder="Customer name (optional)"></div>
-    <div id="cart"><p class="muted">No items yet.</p></div><div id="cartQtySummary" class="notice">Total items selected: 0</div>
-    <div class="field"><label class="muted">Discount ₹</label><input id="discount" type="number" min="0" value="0" oninput="renderCart()"></div>
-    <div class="field"><label class="muted">GST rate % (configurable)</label><input id="gst" type="number" min="0" step=".01" value="0" oninput="renderCart()"></div>
-    <div class="field"><select id="gstMode" onchange="renderCart()"><option value="exclusive">GST added to prices</option><option value="inclusive">GST included in prices</option></select></div>
-    <div id="totals"></div>
-    <div class="field"><select id="payment"><option>Cash</option><option>UPI</option><option>Card</option><option>Unpaid</option></select></div>
-    <div class="row"><button class="gold" onclick="saveOrder('New')">Send KOT</button><button class="primary" onclick="saveOrder('Billed')">Save & Bill</button></div>
+   <div class="pos-catalog panel">
+    <div class="pos-catalog-heading"><b>Menu Items</b><span>Tap a dish to add it to the order</span></div>
+    <div id="products" class="menu-grid"></div>
+    <div id="posCategoryNav" class="category-nav"></div>
    </div>
   </div>
+  <div class="pos-bottom-tools"><button type="button" onclick="cart=[];renderCart()">＋<small>New</small></button><button type="button" onclick="$('search').focus()">▦<small>Qty / Search</small></button><button type="button" onclick="if(cart.length){cart.pop();renderCart()}">▤<small>Remove</small></button><button type="button" onclick="$('discount').focus()">％<small>Discount</small></button><button type="button" onclick="$('customer').focus()">▣<small>Notes / Customer</small></button><button type="button" onclick="$('payment').focus()">▦<small>Payment</small></button></div>
  </section>
  <section id="page-overview" class="hide">
   <div class="pagehead"><div><h1>Owner overview</h1><div class="muted">Business pulse and management controls</div></div><span class="pill">Owner workspace</span></div>
