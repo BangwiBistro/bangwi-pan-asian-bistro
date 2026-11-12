@@ -25,6 +25,8 @@
 <section id="page-qr" class="hide"><div class="pagehead"><div><h1>Table QR codes</h1><div class="muted">15 individual QR links for customer ordering</div></div></div><div class="panel"><div class="notice">Print these QR codes and place them on tables. They open the shared customer order page with the table preselected.</div><div class="tablegrid" id="qrGrid"></div><button class="gold" onclick="window.print()">Print QR sheets</button></div></section>
 </main></div>
 <script>
+window.addEventListener("error",e=>{const box=document.getElementById("loginmsg");if(box){box.textContent="POS loading error: "+(e.message||"Unknown script error")+". Please refresh the page. If it continues, send this message to support.";box.classList.remove("hide");}});
+window.addEventListener("unhandledrejection",e=>{const box=document.getElementById("loginmsg");if(box){box.textContent="POS connection error: "+(e.reason?.message||String(e.reason)||"Unknown connection error");box.classList.remove("hide");}});
 const URL="https://rnxisgenoencbqhuspwp.supabase.co",KEY="sb_publishable_wyeTmgx73cJuFBoHnjmiYQ_r4ShNiNO",db=window.supabase.createClient(URL,KEY);
 const $=id=>document.getElementById(id),fmt=n=>"₹"+Number(n||0).toFixed(2),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let role="",menu=[],orders=[],cart=new Map(),channel=null;
@@ -57,5 +59,5 @@ $("addItem").onclick=async()=>{let name=$("newName").value.trim(),category=$("ne
 $("filter").onchange=renderOrders;$("refresh").onclick=loadOrders;$("kRefresh").onclick=loadOrders;
 $("exportCsv").onclick=()=>{let cols=["order_number","created_at","customer_name","customer_phone","order_type","table_code","status","payment_method","payment_status","total_amount"],csv=[cols.join(","),...orders.map(o=>cols.map(k=>'"'+String(o[k]??"").replace(/"/g,'""')+'"').join(","))].join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="bangwi-orders.csv";a.click();URL.revokeObjectURL(a.href)};
 function renderQR(){let base=location.origin+location.pathname.replace("cloud-pos.html","order-online.html");$("qrGrid").innerHTML=Array.from({length:15},(_,i)=>{let code="T"+String(i+1).padStart(2,"0"),url=base+"?table="+code,img="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data="+encodeURIComponent(url);return '<div class="tabletile" style="text-align:center"><b>Table '+(i+1)+'</b><img src="'+img+'" width="135" height="135" alt="QR Table '+(i+1)+'"><div class="muted">'+code+'</div></div>'}).join("")}
-(async()=>{const {data:{session}}=await db.auth.getSession();if(session)await enter()})();
+(async()=>{try{if(!window.supabase){throw new Error("Supabase library did not load. Check your internet connection or browser content blocker.");}const {data:{session},error}=await db.auth.getSession();if(error)throw error;if(session)await enter();}catch(e){const box=document.getElementById("loginmsg");box.textContent="POS startup error: "+(e.message||String(e));box.classList.remove("hide");}})();
 </script></body></html>
