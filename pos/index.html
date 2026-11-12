@@ -508,7 +508,9 @@ window.bootBangwiCloud = async function(appInit) {
 </script>
 <script>
 const seed=[["Starters","Classic French Fries",120],["Starters","Peri Peri Fries",140],["Starters","Honey Sesame Chilli Potato",180],["Starters","Crispy Chilli Baby Corn",190],["Starters","Chilli Paneer",220],["Starters","Chilli Chicken",240],["Rice","Veg Fried Rice",170],["Rice","Chicken Fried Rice",210],["Rice","Prawn Fried Rice",260],["Noodles","Veg Hakka Noodles",170],["Noodles","Chicken Hakka Noodles",210],["Noodles","Veg Pad Thai Noodles",220],["Noodles","Chicken Pad Thai Noodles",260],["Noodles","Prawn Pad Thai Noodles",300],["Ramen","Veg Shin Ramen",240],["Ramen","Chicken Shin Ramen",280],["Ramen","Prawn Shin Ramen",320],["Beverages","Fresh Lime Soda",90],["Beverages","Mocktail",150],["Desserts","Gulab Jamun",90]];
-let menu=JSON.parse(localStorage.getItem("bw3_menu")||"null")||seed.map((x,i)=>({id:i+1,cat:x[0],name:x[1],price:x[2],active:true,photo:""}));
+let menu=JSON.parse(localStorage.getItem("bw3_menu")||"null");
+// Restore the built-in Bang'wi starter menu if the cloud snapshot contains a missing or empty menu.
+if(!Array.isArray(menu)||menu.length===0){menu=seed.map((x,i)=>({id:i+1,cat:x[0],name:x[1],price:x[2],active:true,photo:""}));localStorage.setItem("bw3_menu",JSON.stringify(menu));}
 const suggestedCategories=["Starters","Main Course","Rice","Noodles","Ramen","Sushi & Kimbap","Mocktails","Beverages","Desserts","North-East Specials"];
 let categories=[...new Set([...suggestedCategories,...(JSON.parse(localStorage.getItem("bw3_categories")||"null")||[]),...menu.map(x=>x.cat)])];
 let newPhotoData="";
