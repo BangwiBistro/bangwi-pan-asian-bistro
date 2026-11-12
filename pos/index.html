@@ -395,8 +395,9 @@ function bangwiEnsureSupabaseClient() {
       BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE_")) {
     throw new Error("Cloud setup is incomplete. Check the Supabase project URL and publishable key.");
   }
-  try { bangwiEnsureSupabaseClient(); }
-  catch (e) { bangwiSetLoginMessage(e.message); return; }
+  bangwiSupabase = window.supabase.createClient(
+    BANGWI_CLOUD_CONFIG.SUPABASE_URL, BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY
+  );
   return bangwiSupabase;
 }
 async function bangwiSignIn() {
@@ -450,9 +451,8 @@ window.bootBangwiCloud = async function(appInit) {
     bangwiSetLoginMessage("Cloud setup is incomplete. Add your Supabase Project URL and anon public key in this HTML file.");
     return;
   }
-  bangwiSupabase = window.supabase.createClient(
-    BANGWI_CLOUD_CONFIG.SUPABASE_URL, BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY
-  );
+  try { bangwiEnsureSupabaseClient(); }
+  catch (e) { bangwiSetLoginMessage(e.message); return; }
   // Keep the existing app's localStorage interface, but mirror bw3_* data to cloud.
   const originalSetItem = Storage.prototype.setItem;
   Storage.prototype.setItem = function(key, value) {
