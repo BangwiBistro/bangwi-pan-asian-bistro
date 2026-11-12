@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bang'wi POS 4.3 – Business Suite</title>
+<style>
+:root{--bg:#f4f1ea;--paper:#fff;--ink:#191919;--gold:#b89552;--cream:#f3e8cf;--muted:#777;--line:#e6dfd2;--green:#28744e;--red:#a33d32}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,sans-serif}
+header{height:82px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:12px}
+.brandlockup{display:flex;align-items:center;gap:12px;min-width:0}.brandlogo{width:64px;height:64px;object-fit:contain;border-radius:50%;background:#111;border:1px solid #8e713b}.brand{font:24px Georgia,serif;letter-spacing:1px;color:#e7d4a8}.brand small{display:block;font:10px Arial;color:#bcae8c;letter-spacing:1.4px;margin-top:3px}
+.header-right{display:flex;align-items:center;gap:10px}.header-right select{background:#292929;color:#fff;border:1px solid #555}
+.shell{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 82px)}
+aside{background:#202020;color:#eee;padding:16px 10px}
+.navlabel{font-size:10px;color:#a99b7d;letter-spacing:1.2px;padding:13px 10px 6px}
+nav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 12px;border:0;border-radius:8px;background:transparent;color:#ddd;cursor:pointer;margin:2px 0}
+nav button.active,nav button:hover{background:#3a3429;color:#f0d9a9}
+main{padding:20px;max-width:1500px;width:100%;margin:auto}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+h1{font:26px Georgia;margin:0 0 5px}.muted{color:var(--muted);font-size:12px}
+button,input,select,textarea{font:inherit;border-radius:8px;border:1px solid #d9d1c4;padding:9px;background:#fff}
+button{cursor:pointer;font-weight:600}.primary{background:var(--ink);color:#fff;border-color:var(--ink)}.gold{background:var(--gold);border-color:var(--gold);color:#171717}.soft{background:#f7f2e8}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}
+.card,.panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:15px}
+.kpi-label{color:var(--muted);font-size:12px}.kpi{font-size:24px;font-weight:700;margin-top:6px}.kpi-note{font-size:11px;color:var(--green);margin-top:4px}
+.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.8fr);gap:14px}
+h2{font-size:16px;margin:0 0 12px}h3{font-size:13px;margin:15px 0 8px;color:#665638}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.row>*{max-width:100%}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:9px}
+.food{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;text-align:left;min-height:80px}.food strong{display:block;margin:5px 0}.food span{color:#795d2c;font-weight:700}.food small{display:block;line-height:1.35;margin:4px 0 6px}.food img{width:100%;height:105px;object-fit:cover;border-radius:7px;margin:5px 0}.food .no-photo{height:65px;background:#f5f0e7;border-radius:7px;display:grid;place-items:center;color:#9a865f;font-size:12px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button.active{background:var(--gold);border-color:var(--gold)}
+.lineitem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:5px}.qty button{padding:3px 8px}
+.total{display:flex;justify-content:space-between;padding:4px 0}.grand{font-size:20px;font-weight:bold;border-top:1px solid var(--line);padding-top:9px;margin-top:5px}
+.tablegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}
+.tabletile{border:1px solid var(--line);border-radius:10px;padding:14px;background:#fff;text-align:left}.tabletile strong{display:block;font-size:16px;margin-bottom:7px}.status{font-size:11px;border-radius:20px;padding:4px 7px;background:#eee;display:inline-block}.occupied{background:#f8e8d1;color:#83521d}.ready{background:#dff1e5;color:#24633f}.status.preparing{background:#fff0c9;color:#815300}.status.completed{background:#dcecff;color:#164d83}.status.new{background:#eee7ff;color:#553b91}.action-kot{background:#242424!important;color:#fff!important;border-color:#242424!important}.action-preparing{background:#e7b84b!important;color:#241a05!important;border-color:#e7b84b!important}.action-ready{background:#28744e!important;color:#fff!important;border-color:#28744e!important}.action-complete{background:#2466a2!important;color:#fff!important;border-color:#2466a2!important}.category-nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.category-nav button{border-radius:20px;padding:8px 14px;background:#f5f0e5;border:1px solid #d8c8a7;color:#49391e}.category-nav button.selected{background:#302719;color:#fff;border-color:#302719}.food-card.out-of-stock{opacity:.58;filter:grayscale(.75)}.stock-badge{display:inline-block;border-radius:12px;padding:3px 8px;font-size:11px;font-weight:700;background:#e2f2e7;color:#24633f}.stock-badge.out{background:#fbe3e3;color:#922d2d}.food-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:left;min-height:170px}.food-card img{width:100%;height:105px;object-fit:cover;border-radius:7px}.food-controls{display:flex;align-items:center;gap:8px;margin-top:8px}.food-controls button{padding:4px 10px;background:#f3e8cf;border-color:#d8c18e}.food-controls b{min-width:20px;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:12px}td,th{text-align:left;padding:9px;border-bottom:1px solid #eee}th{color:#665638}
+.hide{display:none!important}.pill{font-size:11px;background:#f3efe6;border-radius:20px;padding:5px 8px}
+.notice{padding:10px;background:#f8f2e4;border-radius:8px;font-size:12px;margin-bottom:12px}
+@media(max-width:900px){.shell{grid-template-columns:1fr}aside{padding:8px;overflow:auto}nav{display:flex;gap:4px;min-width:max-content}nav button{width:auto}.navlabel{display:none}.cards{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}main{padding:12px}}
+@media(max-width:480px){header{padding:0 10px;height:76px}.brandlogo{width:52px;height:52px}.brand{font-size:18px}.brand small{font-size:8px}.cards{gap:8px}.card{padding:11px}.kpi{font-size:20px}}
+@media print{header,aside,.no-print{display:none!important}.shell{display:block}main{padding:0}}
+
+#cloudLogin{position:fixed;inset:0;background:rgba(18,18,18,.94);z-index:9999;display:grid;place-items:center;padding:18px}
+#cloudLogin .login-card{background:#fff;border:1px solid #b89552;border-radius:16px;padding:26px;width:min(420px,100%);box-shadow:0 20px 70px #0008}
+#cloudLogin h2{font:25px Georgia;margin:0 0 8px;color:#191919}
+#cloudLogin input{display:block;width:100%;margin:10px 0}
+#cloudLogin button{width:100%;margin-top:8px}
+#cloudLogin .login-note{font-size:12px;color:#666;line-height:1.5}
+#cloudStatus{font-size:11px;color:#c8c0b1}
+
+</style></head>
+<body>
+
+<div id="cloudLogin">
+ <div class="login-card">
+  <h2>BANG'WI CLOUD POS</h2>
+  <p class="muted">Sign in with your restaurant staff account.</p>
+  <input id="cloudEmail" type="email" autocomplete="username" placeholder="Email address">
+  <input id="cloudPassword" type="password" autocomplete="current-password" placeholder="Password">
+  <button id="cloudSignIn" class="primary" onclick="bangwiSignIn()">Sign in</button>
+  <p id="cloudLoginMessage" class="login-note" role="status">Use the email and password created for you by the owner.</p>
+  <p class="login-note">Your orders and management data will be loaded from the shared cloud workspace after sign-in.</p>
+ </div>
+</div>
+
+<header>
+ <div class="brandlockup"><img class="brandlogo" src="data:image/jpeg;base64,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" alt="Bang'wi Pan Asian Bistro logo"><div class="brand">BANG'WI POS<small>PAN ASIAN BISTRO · RESTAURANT MANAGEMENT SYSTEM</small></div></div>
+ <div class="header-right"><span id="cloudStatus">Cloud: signed out</span><span class="muted" style="color:#c8c0b1">Workspace</span><select id="role" onchange="switchRole()"><option value="cashier">Cashier view</option><option value="owner">Owner view</option><option value="kitchen">Kitchen view</option></select><button onclick="bangwiSignOut()" style="background:#3a3429;color:#f0d9a9;border-color:#76613b">Sign out</button></div>
+</header>
+<div class="shell">
+<aside>
+ <div class="navlabel">SERVICE</div>
+ <nav id="cashierNav">
+  <button class="active" onclick="showPage('pos',this)">▦ &nbsp; Quick POS</button>
+  <button onclick="showPage('tables',this)">▤ &nbsp; Tables</button>
+  <button onclick="showPage('orders',this)">▣ &nbsp; Orders & KOT</button>
+  <button onclick="showPage('menu',this)">☷ &nbsp; Menu</button>
+ </nav>
+ <div class="navlabel">MANAGEMENT</div>
+ <nav id="ownerNav">
+  <button onclick="showPage('overview',this)">◫ &nbsp; Owner overview</button>
+  <button onclick="showPage('inventory',this)">▧ &nbsp; Inventory & costing</button>
+  <button onclick="showPage('accounts',this)">₹ &nbsp; Expenses & P&L</button>
+  <button onclick="showPage('reports',this)">▥ &nbsp; Reports & backup</button>
+  <button onclick="showPage('qr',this)">▦ &nbsp; Table QR codes</button>
+ </nav>
+ <div class="navlabel">BUSINESS TOOLS</div>
+ <nav id="businessNav">
+  <button onclick="showPage('overview',this)">▦ &nbsp; Dashboard</button>
+  <button onclick="showPage('google',this)">★ &nbsp; Google reviews</button>
+  <button onclick="showPage('website',this)">▣ &nbsp; Smart Websites</button>
+  <button onclick="showPage('social',this)">◎ &nbsp; Social Media</button>
+  <button onclick="showPage('loyalty',this)">♥ &nbsp; Loyalty Programme</button>
+  <button onclick="showPage('menu',this)">☷ &nbsp; Menu Management</button>
+  <button onclick="showPage('inventory',this)">▧ &nbsp; Inventory Management</button>
+  <button onclick="showPage('attendance',this)">◷ &nbsp; Staff Attendance</button>
+  <button onclick="showPage('salary',this)">₹ &nbsp; Salary Management</button>
+ </nav>
+ <div class="navlabel">KITCHEN</div>
+ <nav id="kitchenNav"><button onclick="showPage('kitchen',this)">♨ &nbsp; Kitchen display</button></nav>
+ <div style="padding:16px 10px;color:#9f988b;font-size:11px">Bang'wi Pan Asian Bistro<br>VIP Chowk · Guwahati</div>
+</aside>
+<main>
+ <section id="page-pos">
+  <div class="pagehead"><div><h1>Quick POS</h1><div class="muted">Fast order entry for cashier · simple service workflow</div></div><span class="pill">58mm receipt setup planned</span></div>
+  <div class="layout">
+   <div class="panel">
+    <div class="row"><input id="search" placeholder="Search dishes…" oninput="renderProducts()" style="flex:1"><select id="category" onchange="setPosCategory(this.value)"><option>All categories</option></select></div><div id="posCategoryNav" class="category-nav"></div>
+    <div id="products" class="menu-grid" style="margin-top:12px"></div>
+   </div>
+   <div class="panel">
+    <h2>Current order</h2>
+    <div class="row"><select id="orderType"><option>Dine-in</option><option>Takeaway</option><option>Delivery</option><option>QR order</option></select><select id="tableSelect"><option value="">Choose table</option></select></div>
+    <div class="field"><input id="customer" placeholder="Customer name (optional)"></div>
+    <div id="cart"><p class="muted">No items yet.</p></div><div id="cartQtySummary" class="notice">Total items selected: 0</div>
+    <div class="field"><label class="muted">Discount ₹</label><input id="discount" type="number" min="0" value="0" oninput="renderCart()"></div>
+    <div class="field"><label class="muted">GST rate % (configurable)</label><input id="gst" type="number" min="0" step=".01" value="0" oninput="renderCart()"></div>
+    <div class="field"><select id="gstMode" onchange="renderCart()"><option value="exclusive">GST added to prices</option><option value="inclusive">GST included in prices</option></select></div>
+    <div id="totals"></div>
+    <div class="field"><select id="payment"><option>Cash</option><option>UPI</option><option>Card</option><option>Unpaid</option></select></div>
+    <div class="row"><button class="gold" onclick="saveOrder('New')">Send KOT</button><button class="primary" onclick="saveOrder('Billed')">Save & Bill</button></div>
+   </div>
+  </div>
+ </section>
+ <section id="page-overview" class="hide">
+  <div class="pagehead"><div><h1>Owner overview</h1><div class="muted">Business pulse and management controls</div></div><span class="pill">Owner workspace</span></div>
+  <div class="cards"><div class="card"><div class="kpi-label">Recorded sales</div><div class="kpi" id="salesKpi">₹0</div><div class="kpi-note">Saved orders in this browser</div></div><div class="card"><div class="kpi-label">Orders</div><div class="kpi" id="ordersKpi">0</div><div class="kpi-note">All recorded orders</div></div><div class="card"><div class="kpi-label">Expenses entered</div><div class="kpi" id="expenseKpi">₹0</div><div class="kpi-note">Manual expense entries</div></div><div class="card"><div class="kpi-label">Indicative balance</div><div class="kpi" id="balanceKpi">₹0</div><div class="kpi-note">Sales less recorded expenses</div></div></div>
+  <div class="cards"><div class="card"><div class="kpi-label">Google Review Devices</div><div class="kpi" id="googleDeviceCount">0</div><div class="kpi-note">Linked device / QR review scans</div></div><div class="card"><div class="kpi-label">Product Catalogue Devices</div><div class="kpi" id="catalogueDeviceCount">0</div><div class="kpi-note">Linked device / QR catalogue opens</div></div></div>
+  <div class="panel"><h2>Daily / Weekly / Monthly Sales Report</h2><div class="row"><select id="salesPeriod" onchange="renderSalesReport()"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select><input id="salesReportDate" type="date" onchange="renderSalesReport()"><button onclick="setSalesCompare()">Compare with previous period</button></div><div class="cards" style="margin-top:12px"><div class="card"><div class="kpi-label">Selected period sales</div><div class="kpi" id="periodSales">₹0</div></div><div class="card"><div class="kpi-label">Previous period sales</div><div class="kpi" id="previousSales">₹0</div></div><div class="card"><div class="kpi-label">Difference</div><div class="kpi" id="salesDifference">₹0</div></div><div class="card"><div class="kpi-label">Orders in period</div><div class="kpi" id="periodOrders">0</div></div></div><div id="salesChart" style="display:flex;align-items:flex-end;gap:8px;height:190px;padding:14px 4px 28px;border-bottom:1px solid var(--line);overflow-x:auto"></div><div class="muted" id="salesChartLabels">Sales trend for selected period</div></div>
+  <div class="panel"><h2>Device tracking</h2><div class="row"><input id="deviceName" placeholder="Device / QR name"><select id="deviceType"><option value="google">Google Review Device</option><option value="catalogue">Product Catalogue Device</option></select><input id="deviceCount" type="number" min="0" value="1" placeholder="Scan / open count" style="width:140px"><button class="gold" onclick="addDeviceCount()">Add count</button></div><div id="deviceTable" style="margin-top:12px"></div><p class="muted">Counts are manually entered in this offline version. Automatic QR analytics requires unique trackable links and a shared backend.</p></div>
+  <div class="layout"><div class="panel"><h2>Recent orders</h2><div id="recentOrders"></div></div><div class="panel"><h2>Owner shortcuts</h2><div class="row"><button onclick="go('inventory')">Manage inventory</button><button onclick="go('accounts')">Add expense</button><button onclick="go('qr')">Create table QR</button></div><div class="notice" style="margin-top:14px">This prototype calculates a basic indicative balance. A full P&L requires purchase, stock, payroll, tax and other cost modules.</div></div></div>
+ </section>
+ <section id="page-tables" class="hide"><div class="pagehead"><div><h1>Table management</h1><div class="muted">Owner can name tables to match the restaurant floor plan</div></div></div><div class="panel"><div class="row"><input id="tableCount" type="number" min="1" max="100" value="15" style="width:110px"><button class="gold" onclick="setTableCount()">Set number of tables</button><button onclick="resetTableNames()">Reset default names</button></div><div id="tableNameEditor" class="row" style="margin-top:12px"></div></div><div class="tablegrid" id="tableGrid"></div></section>
+ <section id="page-orders" class="hide"><div class="pagehead"><div><h1>Orders & KOT</h1><div class="muted">Track order progress and print kitchen tickets</div></div><button onclick="renderOrders()">Refresh</button></div><div class="panel" id="ordersList"></div></section>
+ <section id="page-kitchen" class="hide"><div class="pagehead"><div><h1>Kitchen display</h1><div class="muted">New tickets, preparation and ready status</div></div></div><div class="tablegrid" id="kitchenList"></div></section>
+ <section id="page-menu" class="hide"><div class="pagehead"><div><h1>Menu management</h1><div class="muted">Category-wise menu, food photos, editing and availability</div></div></div>
+ <div class="panel"><h2>Add new food item</h2><div class="row"><input id="newName" placeholder="Dish name"><select id="newCat"></select><input id="newPrice" type="number" placeholder="Price ₹" style="width:110px"><input id="newDescription" placeholder="Food description" style="flex:1;min-width:180px"><label class="btn soft">Choose food photo <input id="newPhoto" type="file" accept="image/*" style="display:none" onchange="previewNewPhoto(this)"></label><button class="gold" onclick="addItem()">Add item</button></div><div id="newPhotoPreview" class="muted" style="margin-top:8px">No photo selected</div></div>
+ <div class="panel"><h2>Manage menu categories</h2><div class="row"><input id="categoryName" placeholder="New category name"><button class="gold" onclick="addCategory()">Add category</button></div><div id="categoryChips" class="row" style="margin-top:10px"></div><p class="muted">Categories are used to organise the cashier and customer menu.</p></div>
+ <div class="panel"><div class="row" style="justify-content:space-between"><h2>Food items</h2><select id="menuCategoryFilter" onchange="setMenuCategory(this.value)"><option value="All">All categories</option></select></div><div id="menuCategoryNav" class="category-nav" style="margin:12px 0"></div><div id="menuTable" style="overflow:auto;margin-top:12px"></div></div></section>
+ <section id="page-inventory" class="hide"><div class="pagehead"><div><h1>Inventory & food costing</h1><div class="muted">Starter stock register for ingredients and purchase entries</div></div></div><div class="panel"><div class="row"><input id="stockName" placeholder="Ingredient"><input id="stockQty" type="number" placeholder="Qty" style="width:90px"><input id="stockUnit" placeholder="Unit (kg, pcs)" style="width:110px"><input id="stockCost" type="number" placeholder="Unit cost ₹" style="width:120px"><button class="gold" onclick="addStock()">Add stock</button></div><div id="stockTable" style="margin-top:12px"></div><p class="muted">Automatic recipe-based deduction and dish-level food cost are planned for the connected database release.</p></div></section>
+ <section id="page-accounts" class="hide"><div class="pagehead"><div><h1>Expenses & P&L</h1><div class="muted">Record operating expenses for management review</div></div></div><div class="panel"><div class="row"><input id="expName" placeholder="Expense description"><select id="expCat"><option>Rent</option><option>Salary</option><option>Utilities</option><option>Purchase</option><option>Repairs</option><option>Other</option></select><input id="expAmount" type="number" placeholder="Amount ₹" style="width:130px"><button class="gold" onclick="addExpense()">Add expense</button></div><div id="expenseTable" style="margin-top:12px"></div><div class="notice">Indicative operating result = recorded sales minus recorded expenses. This is not a statutory accounting or GST report.</div></div></section>
+ <section id="page-reports" class="hide"><div class="pagehead"><div><h1>Reports & backup</h1><div class="muted">Export locally stored prototype data</div></div></div><div class="panel"><button class="primary" onclick="backup()">Download full JSON backup</button> <button onclick="exportOrders()">Export orders CSV</button><p class="muted">Keep backups safe. Cloud-connected data is stored in your Supabase project. Export a backup regularly.</p></div></section>
+ 
+ <section id="page-google" class="hide">
+  <div class="pagehead"><div><h1>Google reviews</h1><div class="muted">Keep your Google Business Profile review link ready for customers</div></div></div>
+  <div class="panel"><h2>Review link</h2><div class="row"><input id="googleReviewUrl" placeholder="Paste your Google review link" style="flex:1;min-width:240px"><button class="gold" onclick="saveBusinessLink('googleReviewUrl','bw3_google_review')">Save link</button><button onclick="openSavedLink('bw3_google_review')">Open review page</button></div><p class="muted">Add the direct “Write a review” link from your Google Business Profile. You can then share it on bills, WhatsApp and social posts. This module does not fetch or reply to reviews automatically.</p></div>
+ </section>
+ <section id="page-website" class="hide">
+  <div class="pagehead"><div><h1>Smart Websites</h1><div class="muted">Manage the restaurant website and customer ordering link</div></div></div>
+  <div class="panel"><h2>Website address</h2><div class="row"><input id="websiteUrl" value="https://bangwibistro.github.io/bangwi-pan-asian-bistro/" style="flex:1;min-width:240px"><button class="gold" onclick="saveBusinessLink('websiteUrl','bw3_website')">Save website</button><button onclick="openSavedLink('bw3_website')">Open website</button></div><p class="muted">Use this field for your published website. Online ordering and live menu sync need a shared backend connection.</p></div>
+ </section>
+ <section id="page-social" class="hide">
+  <div class="pagehead"><div><h1>Social Media</h1><div class="muted">Quick access to Bang'wi social channels</div></div></div>
+  <div class="panel"><h2>Social profile links</h2><div class="row"><label>Instagram <input id="instagramUrl" value="https://www.instagram.com/bangwibistro/" style="min-width:240px"></label><button class="gold" onclick="saveBusinessLink('instagramUrl','bw3_instagram')">Save</button><button onclick="openSavedLink('bw3_instagram')">Open Instagram</button></div><div class="row" style="margin-top:12px"><label>Facebook <input id="facebookUrl" placeholder="Paste Facebook page URL" style="min-width:240px"></label><button onclick="saveBusinessLink('facebookUrl','bw3_facebook')">Save</button><button onclick="openSavedLink('bw3_facebook')">Open Facebook</button></div><p class="muted">This is a link organiser, not an automatic post scheduler.</p></div>
+ </section>
+ <section id="page-loyalty" class="hide">
+  <div class="pagehead"><div><h1>Loyalty Programme</h1><div class="muted">Owner creates and manages offers; customers register; cashier or owner reviews applications</div></div></div>
+  <div class="panel"><h2>Owner: Create / edit programme</h2>
+   <div class="row"><input id="loyaltyProgramName" placeholder="Programme name (e.g. Bang'wi Rewards)" style="flex:1;min-width:200px"><input id="loyaltyRewardRule" placeholder="Reward rule (e.g. 3rd visit: free mocktail)" style="flex:2;min-width:220px"><button class="gold" onclick="saveLoyaltyProgramme()">Save programme</button></div>
+   <div class="row" style="margin-top:10px"><span id="loyaltyProgramStatus" class="pill">No programme created</span><button onclick="toggleLoyaltyProgramme()">Run / Pause</button><button onclick="editLoyaltyProgramme()">Edit programme</button></div>
+   <p class="muted">Only an active programme can accept new registrations. Owner controls are not password-protected in this local prototype.</p>
+  </div>
+  <div class="panel"><h2>Customer registration</h2><div class="row"><input id="loyaltyName" placeholder="Customer full name"><input id="loyaltyPhone" placeholder="Mobile number"><input id="loyaltyEmail" placeholder="Email (optional)"><button class="gold" onclick="registerLoyaltyCustomer()">Submit registration</button></div><p class="muted">Registrations enter Pending status until accepted or rejected by the cashier or owner.</p></div>
+  <div class="panel"><h2>Cashier / Owner: Registration approvals</h2><div id="loyaltyTable" style="overflow:auto;margin-top:10px"></div></div>
+ </section>
+ <section id="page-attendance" class="hide">
+  <div class="pagehead"><div><h1>Staff Attendance</h1><div class="muted">Daily attendance register</div></div></div>
+  <div class="panel"><div class="row"><input id="staffAttName" placeholder="Staff name"><input id="staffAttDate" type="date"><select id="staffAttStatus"><option>Present</option><option>Absent</option><option>Half day</option><option>Weekly off</option><option>Leave</option></select><input id="staffAttNote" placeholder="Note (optional)"><button class="gold" onclick="addAttendance()">Save attendance</button></div><div id="attendanceTable" style="overflow:auto;margin-top:14px"></div></div>
+ </section>
+ <section id="page-salary" class="hide">
+  <div class="pagehead"><div><h1>Salary Management</h1><div class="muted">Staff salary register and payment tracking</div></div></div>
+  <div class="panel"><h2>Add salary record</h2><div class="row"><input id="salaryStaff" placeholder="Staff name"><input id="salaryMonth" type="month"><input id="salaryAmount" type="number" placeholder="Salary ₹"><input id="salaryPaid" type="number" placeholder="Paid ₹"><button class="gold" onclick="addSalary()">Save salary</button></div><div id="salaryTable" style="overflow:auto;margin-top:14px"></div><p class="muted">This is a basic internal register, not payroll, statutory deductions or payslip software.</p></div>
+ </section>
+ <section id="page-qr" class="hide"><div class="pagehead"><div><h1>Table QR codes</h1><div class="muted">15 individual table links for the public menu</div></div></div><div class="panel"><div class="notice">To make customer orders reach your cashier from separate phones, first publish the menu and connect a shared cloud database. QR images below are generated from the public URL you enter.</div><div class="row"><input id="baseUrl" placeholder="https://your-site.example/menu.html" style="flex:1"><button class="gold" onclick="makeQrs()">Generate 15 QR codes</button></div><div id="qrGrid" class="tablegrid" style="margin-top:12px"></div><button class="no-print" onclick="window.print()">Print QR sheets</button></div></section>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+/* Bang'wi Cloud POS connector.
+   Configure SUPABASE_URL and SUPABASE_ANON_KEY below.
+   Never place a Supabase service_role key in this browser file.
+*/
+const BANGWI_CLOUD_CONFIG = {
+  SUPABASE_URL: "https://rnxisgenoencbqhuspwp.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_wyeTmgx73cJuFBoHnjmiYQ_r4ShNiNO",
+  RESTAURANT_ID: "bangwi-pan-asian-bistro"
+};
+let bangwiSupabase = null;
+let bangwiCloudUser = null;
+let bangwiCloudSaveTimer = null;
+let bangwiCloudReady = false;
+let bangwiCloudSaving = false;
+let bangwiCloudLastError = "";
+
+function bangwiSetCloudStatus(message, color) {
+  const el = document.getElementById("cloudStatus");
+  if (el) { el.textContent = message; if (color) el.style.color = color; }
+}
+function bangwiSetLoginMessage(message) {
+  const el = document.getElementById("cloudLoginMessage");
+  if (el) el.textContent = message;
+}
+function bangwiLocalSnapshot() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("bw3_")) {
+      try { data[k] = JSON.parse(localStorage.getItem(k)); }
+      catch (_) { data[k] = localStorage.getItem(k); }
+    }
+  }
+  return data;
+}
+function bangwiRestoreSnapshot(data) {
+  if (!data || typeof data !== "object") return;
+  Object.keys(data).forEach(k => {
+    if (k.startsWith("bw3_")) localStorage.setItem(k, JSON.stringify(data[k]));
+  });
+}
+async function bangwiSaveCloudState() {
+  if (!bangwiCloudReady || !bangwiSupabase || !bangwiCloudUser || bangwiCloudSaving) return;
+  bangwiCloudSaving = true;
+  try {
+    const payload = {
+      restaurant_id: BANGWI_CLOUD_CONFIG.RESTAURANT_ID,
+      data: bangwiLocalSnapshot(),
+      updated_by: bangwiCloudUser.id,
+      updated_at: new Date().toISOString()
+    };
+    const { error } = await bangwiSupabase.from("restaurant_state")
+      .upsert(payload, { onConflict: "restaurant_id" });
+    if (error) throw error;
+    bangwiSetCloudStatus("Cloud: saved", "#b9e5c5");
+    bangwiCloudLastError = "";
+  } catch (e) {
+    bangwiCloudLastError = e.message || "Cloud save failed";
+    bangwiSetCloudStatus("Cloud: save error", "#ffb5a9");
+    console.error("Bang'wi cloud save:", e);
+  } finally {
+    bangwiCloudSaving = false;
+  }
+}
+function bangwiQueueCloudSave() {
+  if (!bangwiCloudReady) return;
+  bangwiSetCloudStatus("Cloud: saving…", "#f0d9a9");
+  clearTimeout(bangwiCloudSaveTimer);
+  bangwiCloudSaveTimer = setTimeout(bangwiSaveCloudState, 700);
+}
+async function bangwiSignIn() {
+  const email = document.getElementById("cloudEmail").value.trim();
+  const password = document.getElementById("cloudPassword").value;
+  const btn = document.getElementById("cloudSignIn");
+  if (!email || !password) { bangwiSetLoginMessage("Enter your email and password."); return; }
+  if (!window.supabase || !BANGWI_CLOUD_CONFIG.SUPABASE_URL.startsWith("https://") ||
+      BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE_")) {
+    bangwiSetLoginMessage("Cloud setup is incomplete. Add your Supabase Project URL and anon public key in this HTML file, then upload it again.");
+    return;
+  }
+  btn.disabled = true; btn.textContent = "Signing in…";
+  try {
+    const { data, error } = await bangwiSupabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    bangwiCloudUser = data.user;
+    const { data: row, error: readError } = await bangwiSupabase.from("restaurant_state")
+      .select("data").eq("restaurant_id", BANGWI_CLOUD_CONFIG.RESTAURANT_ID).maybeSingle();
+    if (readError) throw readError;
+    if (row && row.data) {
+      // Cloud is authoritative at sign-in. Load it before the app initializes.
+      Object.keys(localStorage).filter(k => k.startsWith("bw3_")).forEach(k => localStorage.removeItem(k));
+      bangwiRestoreSnapshot(row.data);
+    }
+    // Reload once so the existing v4.3 data variables initialise from the cloud snapshot.
+    // Supabase persists the signed-in session across this reload.
+    sessionStorage.setItem("bangwi_cloud_restore_reload", "1");
+    location.reload();
+  } catch (e) {
+    console.error("Bang'wi sign-in:", e);
+    bangwiSetLoginMessage(
+      /Invalid login credentials/i.test(e.message || "")
+        ? "Wrong email or password. Check your staff login details or ask the owner to reset your password."
+        : (e.message || "Unable to sign in. Check the cloud setup and try again.")
+    );
+  } finally {
+    btn.disabled = false; btn.textContent = "Sign in";
+  }
+}
+async function bangwiSignOut() {
+  if (bangwiSupabase) await bangwiSupabase.auth.signOut();
+  location.reload();
+}
+window.bangwiSignIn = bangwiSignIn;
+window.bangwiSignOut = bangwiSignOut;
+window.bootBangwiCloud = async function(appInit) {
+  window.bangwiAppInit = appInit;
+  if (!window.supabase) {
+    bangwiSetLoginMessage("Unable to load the cloud sign-in library. Check your internet connection.");
+    return;
+  }
+  if (!BANGWI_CLOUD_CONFIG.SUPABASE_URL.startsWith("https://") ||
+      BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY.startsWith("PASTE_")) {
+    bangwiSetLoginMessage("Cloud setup is incomplete. Add your Supabase Project URL and anon public key in this HTML file.");
+    return;
+  }
+  bangwiSupabase = window.supabase.createClient(
+    BANGWI_CLOUD_CONFIG.SUPABASE_URL, BANGWI_CLOUD_CONFIG.SUPABASE_ANON_KEY
+  );
+  // Keep the existing app's localStorage interface, but mirror bw3_* data to cloud.
+  const originalSetItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = function(key, value) {
+    originalSetItem.call(this, key, value);
+    if (key && String(key).startsWith("bw3_")) bangwiQueueCloudSave();
+  };
+  const originalRemoveItem = Storage.prototype.removeItem;
+  Storage.prototype.removeItem = function(key) {
+    originalRemoveItem.call(this, key);
+    if (key && String(key).startsWith("bw3_")) bangwiQueueCloudSave();
+  };
+
+  const { data: sessionData, error: sessionError } = await bangwiSupabase.auth.getSession();
+  if (sessionError) {
+    bangwiSetLoginMessage(sessionError.message);
+    return;
+  }
+  const user = sessionData.session?.user;
+  if (!user) {
+    bangwiSetCloudStatus("Cloud: sign in required");
+    return;
+  }
+  bangwiCloudUser = user;
+  try {
+    const { data: row, error } = await bangwiSupabase.from("restaurant_state")
+      .select("data").eq("restaurant_id", BANGWI_CLOUD_CONFIG.RESTAURANT_ID).maybeSingle();
+    if (error) throw error;
+    if (row?.data) bangwiRestoreSnapshot(row.data);
+    // The first reload occurs after login, before app state variables have been initialised
+    // from the restored local cache. On the second load, initialise the application.
+    if (sessionStorage.getItem("bangwi_cloud_restore_reload") !== "1") {
+      sessionStorage.setItem("bangwi_cloud_restore_reload", "1");
+      location.reload();
+      return;
+    }
+    sessionStorage.removeItem("bangwi_cloud_restore_reload");
+    bangwiCloudReady = true;
+    document.getElementById("cloudLogin").style.display = "none";
+    bangwiSetCloudStatus("Cloud: connected", "#b9e5c5");
+    if (typeof window.bangwiAppInit === "function") window.bangwiAppInit();
+    if (!row) await bangwiSaveCloudState();
+  } catch (e) {
+    console.error("Bang'wi cloud load:", e);
+    bangwiSetLoginMessage(e.message || "Unable to load the cloud workspace.");
+  }
+};
+
+</script>
+<script>
+const seed=[["Starters","Classic French Fries",120],["Starters","Peri Peri Fries",140],["Starters","Honey Sesame Chilli Potato",180],["Starters","Crispy Chilli Baby Corn",190],["Starters","Chilli Paneer",220],["Starters","Chilli Chicken",240],["Rice","Veg Fried Rice",170],["Rice","Chicken Fried Rice",210],["Rice","Prawn Fried Rice",260],["Noodles","Veg Hakka Noodles",170],["Noodles","Chicken Hakka Noodles",210],["Noodles","Veg Pad Thai Noodles",220],["Noodles","Chicken Pad Thai Noodles",260],["Noodles","Prawn Pad Thai Noodles",300],["Ramen","Veg Shin Ramen",240],["Ramen","Chicken Shin Ramen",280],["Ramen","Prawn Shin Ramen",320],["Beverages","Fresh Lime Soda",90],["Beverages","Mocktail",150],["Desserts","Gulab Jamun",90]];
+let menu=JSON.parse(localStorage.getItem("bw3_menu")||"null")||seed.map((x,i)=>({id:i+1,cat:x[0],name:x[1],price:x[2],active:true,photo:""}));
+const suggestedCategories=["Starters","Main Course","Rice","Noodles","Ramen","Sushi & Kimbap","Mocktails","Beverages","Desserts","North-East Specials"];
+let categories=[...new Set([...suggestedCategories,...(JSON.parse(localStorage.getItem("bw3_categories")||"null")||[]),...menu.map(x=>x.cat)])];
+let newPhotoData="";
+let posCategory="All categories";
+let menuCategory="All";
+let tableNames=JSON.parse(localStorage.getItem("bw3_table_names")||"null")||Array.from({length:15},(_,i)=>"Table "+(i+1));
+let orders=JSON.parse(localStorage.getItem("bw3_orders")||"[]"),stock=JSON.parse(localStorage.getItem("bw3_stock")||"[]"),expenses=JSON.parse(localStorage.getItem("bw3_expenses")||"[]"),cart=[];
+const $=id=>document.getElementById(id),fmt=n=>"₹"+Number(n||0).toFixed(2);
+function persist(){localStorage.setItem("bw3_menu",JSON.stringify(menu));localStorage.setItem("bw3_categories",JSON.stringify(categories));localStorage.setItem("bw3_orders",JSON.stringify(orders));localStorage.setItem("bw3_stock",JSON.stringify(stock));localStorage.setItem("bw3_expenses",JSON.stringify(expenses))}
+persist();
+function go(page){let btn=[...document.querySelectorAll("nav button")].find(b=>b.getAttribute("onclick")?.includes("'"+page+"'"));showPage(page,btn)}
+function showPage(p,b){document.querySelectorAll("main>section").forEach(s=>s.classList.add("hide"));$("page-"+p).classList.remove("hide");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));if(b)b.classList.add("active");renderAll()}
+function switchRole(){let role=$("role").value;document.querySelectorAll("#cashierNav,#ownerNav,#kitchenNav").forEach(n=>n.classList.remove("hide"));if(role==="cashier"){ $("ownerNav").classList.add("hide");$("kitchenNav").classList.add("hide");go("pos")}else if(role==="owner"){ $("cashierNav").classList.add("hide");$("kitchenNav").classList.add("hide");go("overview")}else{$("cashierNav").classList.add("hide");$("ownerNav").classList.add("hide");go("kitchen")}}
+function setPosCategory(cat){posCategory=cat;$("category").value=cat;renderProducts()}
+function renderProducts(){let cats=["All categories",...categories];if(!cats.includes(posCategory))posCategory="All categories";$("category").innerHTML=cats.map(x=>`<option value="${escapeAttr(x)}">${escapeAttr(x)}</option>`).join("");$("category").value=posCategory;let nav=$("posCategoryNav");if(nav)nav.innerHTML=cats.map(c=>`<button class="${posCategory===c?"selected":""}" onclick="setPosCategory(decodeURIComponent('${encodeURIComponent(c)}'))">${escapeAttr(c)}${c==="All categories"?"":` (${menu.filter(x=>x.cat===c&&x.active&&!x.outOfStock).length})`}</button>`).join("");let q=$("search").value.toLowerCase();let shown=menu.filter(x=>x.active&&(posCategory==="All categories"||x.cat===posCategory)&&x.name.toLowerCase().includes(q));$("products").innerHTML=shown.map(x=>{let selected=cart.find(c=>c.id===x.id),n=selected?selected.qty:0,out=!!x.outOfStock;return `<div class="food-card ${out?"out-of-stock":""}">${x.photo?`<img src="${x.photo}" alt="${escapeAttr(x.name)}">`:'<div class="no-photo">Food photo</div>'}<span class="muted">${escapeAttr(x.cat)}</span><strong>${escapeAttr(x.name)}</strong>${x.description?`<small class="muted">${escapeAttr(x.description)}</small>`:""}<span>${fmt(x.price)}</span>${out?'<span class="stock-badge out">OUT OF STOCK</span>':`<div class="food-controls"><button onclick="changeSelectedQty(${x.id},-1)">−</button><b>${n}</b><button class="gold" onclick="changeSelectedQty(${x.id},1)">+</button><small class="muted">Selected</small></div>`}</div>`}).join("")||'<p class="muted">No dishes in this category.</p>'}
+function changeSelectedQty(id,delta){let item=menu.find(m=>m.id===id);if(delta>0&&item?.outOfStock)return alert("This dish is marked Out of Stock.");let x=cart.find(m=>m.id===id);if(!x&&delta>0){let item=menu.find(m=>m.id===id);cart.push({...item,qty:1})}else if(x){x.qty+=delta;if(x.qty<=0)cart=cart.filter(m=>m.id!==id)}renderProducts();renderCart()}
+function addToCart(id){let x=menu.find(m=>m.id===id);if(x?.outOfStock)return alert("This dish is marked Out of Stock.");let a=cart.find(m=>m.id===id);if(a)a.qty++;else cart.push({...x,qty:1});renderCart()}
+function qty(id,d){let x=cart.find(m=>m.id===id);if(x){x.qty+=d;if(x.qty<1)cart=cart.filter(m=>m.id!==id)}renderCart()}
+function calc(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0),disc=Math.max(0,Number($("discount").value)||0),base=Math.max(0,sub-disc),rate=Math.max(0,Number($("gst").value)||0),tax=$("gstMode").value==="inclusive"?base-base/(1+rate/100):base*rate/100;return{sub,disc,tax,total:$("gstMode").value==="inclusive"?base:base+tax,rate}}
+function renderCart(){let totalQty=cart.reduce((n,x)=>n+x.qty,0);$("cartQtySummary").textContent="Total items selected: "+totalQty;$("cart").innerHTML=cart.length?cart.map(x=>`<div class="lineitem"><span>${x.name}<br><small class="muted">${fmt(x.price)}</small></span><span class="qty"><button onclick="qty(${x.id},-1)">−</button>${x.qty}<button onclick="qty(${x.id},1)">+</button></span><b>${fmt(x.price*x.qty)}</b></div>`).join(""):'<p class="muted">No items yet.</p>';let c=calc();$("totals").innerHTML=`<div class="total"><span>Subtotal</span><b>${fmt(c.sub)}</b></div><div class="total"><span>Discount</span><b>${fmt(c.disc)}</b></div><div class="total"><span>GST (${c.rate}%)</span><b>${fmt(c.tax)}</b></div><div class="total grand"><span>Total</span><span>${fmt(c.total)}</span></div>`;renderProducts()}
+function saveOrder(status){if(!cart.length)return alert("Add menu items first.");let type=$("orderType").value,table=$("tableSelect").value|| (type==="Dine-in"?"Table not selected":"—"),o={id:"BW"+Date.now().toString().slice(-7),date:new Date().toISOString(),type,table,customer:$("customer").value,payment:$("payment").value,items:cart.map(x=>({...x})),calc:calc(),status};orders.unshift(o);persist();cart=[];renderCart();renderAll();alert("Order "+o.id+" saved. "+(status==="New"?"Kitchen ticket is ready to print from Orders & KOT.":"Bill recorded. Connect a compatible printer for live receipt printing."))}
+function renderOrders(){let html=orders.length?orders.map(o=>`<div class="panel" style="margin:8px 0"><div class="row" style="justify-content:space-between"><b>${o.id} · ${o.table}</b><span class="status ${o.status==="Ready"?"ready":o.status==="Preparing"?"preparing":o.status==="Completed"?"completed":"new"}">${o.status}</span></div><div class="muted">${new Date(o.date).toLocaleString()} · ${o.type} · ${o.payment}</div>${o.items.map(i=>`<div class="lineitem"><span>${i.name} × ${i.qty}</span><b>${fmt(i.price*i.qty)}</b></div>`).join("")}<div class="total grand"><span>Total</span><span>${fmt(o.calc.total)}</span></div><div class="row no-print"><button class="action-kot" onclick="printKot('${o.id}')">Print KOT</button><button class="action-preparing" onclick="setStatus('${o.id}','Preparing')">Preparing</button><button class="action-ready" onclick="setStatus('${o.id}','Ready')">Ready</button><button class="action-complete" onclick="setStatus('${o.id}','Completed')">Complete</button></div></div>`).join(""):'<p class="muted">No orders recorded yet.</p>';$("ordersList").innerHTML=html}
+function setStatus(id,s){let o=orders.find(x=>x.id===id);o.status=s;persist();renderAll()}
+function printKot(id){let o=orders.find(x=>x.id===id),w=window.open("","_blank","width=360,height=600");if(!w)return alert("Allow pop-ups to print KOT.");w.document.write(`<html><body style="font:12px monospace;width:58mm"><h3 style="text-align:center">BANG'WI · KITCHEN TICKET</h3>Order ${o.id}<br>${o.table}<br>${new Date(o.date).toLocaleString()}<hr>${o.items.map(i=>`<p><b>${i.qty} × ${i.name}</b></p>`).join("")}<script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function renderTables(){let editor=$("tableNameEditor");if(editor)editor.innerHTML=tableNames.map((t,i)=>`<label class="muted">Table ${i+1}<input value="${escapeAttr(t)}" onchange="renameTable(${i},this.value)" style="width:145px"></label>`).join("");$("tableGrid").innerHTML=tableNames.map(t=>{let o=orders.find(x=>x.table===t&&x.status!=="Completed"),safe=encodeURIComponent(t);return `<button class="tabletile" onclick="$('tableSelect').value=decodeURIComponent('${safe}');go('pos')"><strong>${escapeAttr(t)}</strong><span class="status ${o?(o.status==='Ready'?'ready':o.status==='Preparing'?'preparing':'occupied'):''}">${o?o.status:"Available"}</span><div class="muted" style="margin-top:8px">${o?o.id:"Tap to start order"}</div></button>`}).join("");let select=$("tableSelect"),current=select.value;select.innerHTML='<option value="">Choose table</option>'+tableNames.map(t=>`<option value="${escapeAttr(t)}">${escapeAttr(t)}</option>`).join("");if(tableNames.includes(current))select.value=current}
+function renameTable(i,name){name=name.trim();if(!name)return alert("Table name cannot be blank.");if(tableNames.some((t,j)=>j!==i&&t.toLowerCase()===name.toLowerCase()))return alert("Table names must be unique.");let old=tableNames[i];tableNames[i]=name;orders.forEach(o=>{if(o.table===old)o.table=name});localStorage.setItem("bw3_table_names",JSON.stringify(tableNames));persist();renderTables();renderOrders();renderKitchen()}
+function setTableCount(){let n=Math.max(1,Math.min(100,Number($("tableCount").value)||15));while(tableNames.length<n)tableNames.push("Table "+(tableNames.length+1));if(tableNames.length>n){let removed=tableNames.slice(n);if(orders.some(o=>removed.includes(o.table)&&o.status!=="Completed"))return alert("Some tables being removed have active orders.");tableNames=tableNames.slice(0,n)}localStorage.setItem("bw3_table_names",JSON.stringify(tableNames));renderTables()}
+function resetTableNames(){if(!confirm("Reset all table names to default names?"))return;tableNames=tableNames.map((_,i)=>"Table "+(i+1));localStorage.setItem("bw3_table_names",JSON.stringify(tableNames));renderTables()}
+function renderKitchen(){$("kitchenList").innerHTML=orders.filter(o=>o.status!=="Completed"&&o.status!=="Billed").map(o=>`<div class="panel"><b>${o.table} · ${o.id}</b><div class="muted">${new Date(o.date).toLocaleTimeString()}</div>${o.items.map(i=>`<p>${i.qty} × ${i.name}</p>`).join("")}<span class="status">${o.status}</span><div class="row" style="margin-top:8px"><button onclick="setStatus('${o.id}','Preparing')">Start</button><button class="gold" onclick="setStatus('${o.id}','Ready')" class="action-ready">Ready</button></div></div>`).join("")||'<p class="muted">No active kitchen tickets.</p>'}
+function renderMenu(){
+ let filter=$("menuCategoryFilter").value||menuCategory||"All";
+ $("menuCategoryFilter").innerHTML='<option value="All">All categories</option>'+categories.map(c=>`<option value="${escapeAttr(c)}">${escapeAttr(c)}</option>`).join("");
+ if(!categories.includes(filter)&&filter!=="All")filter="All";
+ $("menuCategoryFilter").value=filter;menuCategory=filter;
+ $("newCat").innerHTML=categories.map(c=>`<option value="${escapeAttr(c)}">${escapeAttr(c)}</option>`).join("");
+ $("categoryChips").innerHTML=categories.map(c=>`<span class="pill">${escapeAttr(c)} <button class="btn" style="padding:2px 6px" onclick="renameCategoryPrompt('${encodeURIComponent(c)}')">Edit</button> <button class="btn" style="padding:2px 6px" onclick="deleteCategoryPrompt('${encodeURIComponent(c)}')">Delete</button></span>`).join("");
+ $("menuCategoryNav").innerHTML=[{name:"All",count:menu.length},...categories.map(c=>({name:c,count:menu.filter(x=>x.cat===c).length}))].map(c=>`<button class="${filter===c.name?"selected":""}" onclick="setMenuCategory(decodeURIComponent('${encodeURIComponent(c.name)}'))">${escapeAttr(c.name)} (${c.count})</button>`).join("");
+ let rows=menu.filter(x=>filter==="All"||x.cat===filter);
+ $("menuTable").innerHTML='<table><tr><th>Photo</th><th>Dish name</th><th>Description</th><th>Category</th><th>Price ₹</th><th>Menu enabled</th><th>Stock status</th><th>Actions</th></tr>'+rows.map(x=>`<tr><td>${x.photo?`<img src="${x.photo}" style="width:62px;height:48px;object-fit:cover;border-radius:6px">`:'<span class="muted">No photo</span>'}<br><label class="btn" style="display:inline-block;padding:4px 6px;margin-top:4px">Change photo<input type="file" accept="image/*" style="display:none" onchange="changePhoto(${x.id},this)"></label></td><td><input value="${escapeAttr(x.name)}" style="width:145px" onchange="editField(${x.id},'name',this.value)"></td><td><input value="${escapeAttr(x.description||"")}" placeholder="Food description" style="width:190px" onchange="editField(${x.id},'description',this.value)"></td><td><select onchange="editField(${x.id},'cat',this.value)">${categories.map(c=>`<option value="${escapeAttr(c)}" ${x.cat===c?'selected':''}>${escapeAttr(c)}</option>`).join("")}</select></td><td><input type="number" min="0" value="${x.price}" style="width:85px" onchange="editPrice(${x.id},this.value)"></td><td><input type="checkbox" ${x.active?"checked":""} onchange="toggleItem(${x.id},this.checked)"></td><td><button class="btn ${x.outOfStock?"action-complete":"action-ready"}" onclick="toggleOutOfStock(${x.id})">${x.outOfStock?"Out of Stock":"In Stock"}</button></td><td><button class="btn" onclick="deleteItem(${x.id})">Delete item</button></td></tr>`).join("")+'</table>';
+}
+function setMenuCategory(cat){menuCategory=cat;$("menuCategoryFilter").value=cat;renderMenu()}
+function toggleOutOfStock(id){let item=menu.find(x=>x.id===id);if(!item)return;item.outOfStock=!item.outOfStock;if(item.outOfStock)cart=cart.filter(c=>c.id!==id);persist();renderMenu();renderProducts();renderCart()}
+function escapeAttr(v){return String(v||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
+function compressImage(file,callback){if(!file)return;let reader=new FileReader();reader.onload=e=>{let img=new Image();img.onload=()=>{let max=700,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);callback(canvas.toDataURL("image/jpeg",.78))};img.src=e.target.result};reader.readAsDataURL(file)}
+function previewNewPhoto(input){compressImage(input.files[0],data=>{newPhotoData=data;$("newPhotoPreview").innerHTML=`<img src="${data}" style="width:110px;height:80px;object-fit:cover;border-radius:8px"> Photo ready`})}
+function changePhoto(id,input){compressImage(input.files[0],data=>{let x=menu.find(m=>m.id===id);x.photo=data;persist();renderMenu();renderProducts()})}
+function editField(id,field,value){let x=menu.find(m=>m.id===id);if(!x)return;if(field==="name"&&!value.trim())return alert("Dish name cannot be empty.");x[field]=value;persist();renderMenu();renderProducts()}
+function addCategory(){let c=$("categoryName").value.trim();if(!c)return;if(categories.some(x=>x.toLowerCase()===c.toLowerCase()))return alert("Category already exists.");categories.push(c);$("categoryName").value="";persist();renderMenu();renderProducts()}
+function deleteCategoryPrompt(encoded){let c=decodeURIComponent(encoded);if(menu.some(x=>x.cat===c))return alert("Move or delete all dishes in this category before deleting it.");if(!confirm("Delete category "+c+"?"))return;categories=categories.filter(x=>x!==c);persist();renderMenu();renderProducts()}
+function renameCategoryPrompt(encoded){let old=decodeURIComponent(encoded),next=prompt("Rename category:",old);if(!next||!next.trim()||next.trim()===old)return;next=next.trim();if(categories.includes(next))return alert("That category already exists.");categories=categories.map(c=>c===old?next:c);menu.forEach(x=>{if(x.cat===old)x.cat=next});persist();renderMenu();renderProducts()}
+function deleteItem(id){if(!confirm("Delete this menu item?"))return;menu=menu.filter(x=>x.id!==id);persist();renderMenu();renderProducts()}
+
+function addItem(){let n=$("newName").value.trim(),p=Number($("newPrice").value);if(!n||!Number.isFinite(p)||p<0)return alert("Enter a dish and valid price.");menu.push({id:Math.max(0,...menu.map(x=>x.id))+1,name:n,description:$("newDescription").value.trim(),cat:$("newCat").value,price:p,active:true,outOfStock:false,photo:newPhotoData});persist();renderMenu();renderProducts();$("newName").value="";$("newPrice").value="";$("newDescription").value="";$("newPhoto").value="";newPhotoData="";$("newPhotoPreview").textContent="No photo selected"}
+function editPrice(id,v){menu.find(x=>x.id===id).price=Math.max(0,Number(v)||0);persist();renderProducts()}
+function toggleItem(id,v){menu.find(x=>x.id===id).active=v;persist();renderMenu();renderProducts()}
+function addStock(){let name=$("stockName").value.trim(),qty=Number($("stockQty").value),unit=$("stockUnit").value.trim(),cost=Number($("stockCost").value);if(!name||qty<0||!unit||cost<0)return alert("Enter ingredient, quantity, unit and unit cost.");stock.push({name,qty,unit,cost});persist();renderStock();$("stockName").value=$("stockQty").value=$("stockUnit").value=$("stockCost").value=""}
+function renderStock(){$("stockTable").innerHTML=stock.length?'<table><tr><th>Ingredient</th><th>Qty</th><th>Unit</th><th>Unit cost</th><th>Value</th></tr>'+stock.map(x=>`<tr><td>${x.name}</td><td>${x.qty}</td><td>${x.unit}</td><td>${fmt(x.cost)}</td><td>${fmt(x.qty*x.cost)}</td></tr>`).join("")+'</table>':'<p class="muted">No ingredients entered yet.</p>'}
+function addExpense(){let n=$("expName").value.trim(),a=Number($("expAmount").value);if(!n||!Number.isFinite(a)||a<0)return alert("Enter expense details and amount.");expenses.unshift({name:n,cat:$("expCat").value,amount:a,date:new Date().toISOString()});persist();renderExpenses();renderOverview();$("expName").value=$("expAmount").value=""}
+function renderExpenses(){$("expenseTable").innerHTML=expenses.length?'<table><tr><th>Date</th><th>Expense</th><th>Category</th><th>Amount</th></tr>'+expenses.map(x=>`<tr><td>${new Date(x.date).toLocaleDateString()}</td><td>${x.name}</td><td>${x.cat}</td><td>${fmt(x.amount)}</td></tr>`).join("")+'</table>':'<p class="muted">No expenses recorded.</p>'}
+let deviceRecords=JSON.parse(localStorage.getItem("bw3_device_counts")||"[]");
+function addDeviceCount(){let name=$("deviceName").value.trim(),type=$("deviceType").value,count=Number($("deviceCount").value);if(!name||!Number.isFinite(count)||count<0)return alert("Enter a device name and valid count.");deviceRecords.unshift({name,type,count,date:new Date().toISOString()});localStorage.setItem("bw3_device_counts",JSON.stringify(deviceRecords));$("deviceName").value="";$("deviceCount").value="1";renderDeviceCounts();}
+function renderDeviceCounts(){let g=deviceRecords.filter(x=>x.type==="google").reduce((n,x)=>n+x.count,0),c=deviceRecords.filter(x=>x.type==="catalogue").reduce((n,x)=>n+x.count,0);$("googleDeviceCount").textContent=g;$("catalogueDeviceCount").textContent=c;$("deviceTable").innerHTML=deviceRecords.length?'<table><tr><th>Device / QR</th><th>Type</th><th>Count</th><th>Date</th></tr>'+deviceRecords.map(x=>`<tr><td>${escapeAttr(x.name)}</td><td>${x.type==="google"?"Google Review":"Product Catalogue"}</td><td>${x.count}</td><td>${new Date(x.date).toLocaleDateString()}</td></tr>`).join("")+'</table>':'<p class="muted">No device counts recorded yet.</p>'}
+function periodBounds(period,date){let d=new Date(date+"T12:00:00"),start=new Date(d),end=new Date(d);if(period==="daily"){start.setHours(0,0,0,0);end.setHours(23,59,59,999)}else if(period==="weekly"){let offset=(d.getDay()+6)%7;start.setDate(d.getDate()-offset);start.setHours(0,0,0,0);end=new Date(start);end.setDate(start.getDate()+6);end.setHours(23,59,59,999)}else{start=new Date(d.getFullYear(),d.getMonth(),1);end=new Date(d.getFullYear(),d.getMonth()+1,0,23,59,59,999)}return{start,end}}
+function sumSales(start,end){let a=orders.filter(o=>{let d=new Date(o.date);return d>=start&&d<=end});return{total:a.reduce((n,o)=>n+(o.calc?.total||0),0),count:a.length}}
+function renderSalesReport(){if(!$("salesReportDate"))return;let period=$("salesPeriod").value,date=$("salesReportDate").value||new Date().toISOString().slice(0,10),b=periodBounds(period,date),duration=b.end-b.start+1,prevStart=new Date(b.start.getTime()-duration),prevEnd=new Date(b.start.getTime()-1),now=sumSales(b.start,b.end),prev=sumSales(prevStart,prevEnd);$("periodSales").textContent=fmt(now.total);$("previousSales").textContent=fmt(prev.total);$("salesDifference").textContent=(now.total-prev.total>=0?"+":"")+fmt(now.total-prev.total);$("periodOrders").textContent=now.count;let points=[];if(period==="daily"){for(let h=0;h<24;h++){let st=new Date(b.start);st.setHours(h);let en=new Date(st);en.setHours(h+1);points.push({label:String(h).padStart(2,"0"),value:sumSales(st,en).total})}}else if(period==="weekly"){for(let i=0;i<7;i++){let st=new Date(b.start);st.setDate(st.getDate()+i);let en=new Date(st);en.setHours(23,59,59,999);points.push({label:st.toLocaleDateString("en-IN",{weekday:"short"}),value:sumSales(st,en).total})}}else{for(let i=0;i<12;i++){let st=new Date(b.start.getFullYear(),b.start.getMonth()+i,1),en=new Date(b.start.getFullYear(),b.start.getMonth()+i+1,0,23,59,59,999);points.push({label:st.toLocaleDateString("en-IN",{month:"short"}),value:sumSales(st,en).total})}}let max=Math.max(1,...points.map(x=>x.value));$("salesChart").innerHTML=points.map(x=>`<div title="${x.label}: ${fmt(x.value)}" style="min-width:24px;flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px"><div style="width:70%;height:${Math.max(2,x.value/max*140)}px;background:linear-gradient(180deg,#d8bd7b,#98743a);border-radius:5px 5px 0 0"></div><small class="muted" style="font-size:9px">${x.label}</small></div>`).join("");$("salesChartLabels").textContent=period==="daily"?"Hourly sales":period==="weekly"?"Daily sales for the selected week":"Monthly sales trend"}
+function setSalesCompare(){renderSalesReport();alert("The selected day, week or month is compared with the immediately previous matching period.")}
+function renderOverview(){let sales=orders.reduce((s,o)=>s+o.calc.total,0),ex=expenses.reduce((s,x)=>s+x.amount,0);$("salesKpi").textContent=fmt(sales);$("ordersKpi").textContent=orders.length;$("expenseKpi").textContent=fmt(ex);$("balanceKpi").textContent=fmt(sales-ex);$("recentOrders").innerHTML=orders.slice(0,6).map(o=>`<div class="lineitem"><span>${o.id} · ${o.table}<br><small class="muted">${new Date(o.date).toLocaleString()}</small></span><b>${fmt(o.calc.total)}</b></div>`).join("")||'<p class="muted">No sales recorded.</p>';renderDeviceCounts();renderSalesReport()}
+function makeQrs(){let base=$("baseUrl").value.trim();if(!/^https?:\/\//.test(base))return alert("Enter a full published URL beginning with https://");localStorage.setItem("bw3_base",base);$("qrGrid").innerHTML=Array.from({length:15},(_,i)=>{let table="Table "+(i+1),url=base+(base.includes("?")?"&":"?")+"table="+encodeURIComponent(table);let img="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data="+encodeURIComponent(url);return `<div class="tabletile" style="text-align:center"><b>${table}</b><img src="${img}" width="135" height="135" alt="QR ${table}"><div class="muted">Scan to order</div></div>`}).join("")}
+function backup(){let d={menu,orders,stock,expenses,tableNames,deviceRecords,exportedAt:new Date().toISOString()},a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:"application/json"}));a.download="bangwi-pos-3-backup.json";a.click();URL.revokeObjectURL(a.href)}
+function exportOrders(){let rows=[["Order","Date","Table","Type","Total","Payment"],...orders.map(o=>[o.id,o.date,o.table,o.type,o.calc.total,o.payment])];let csv=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="bangwi-orders.csv";a.click();URL.revokeObjectURL(a.href)}
+
+let loyaltyRecords=JSON.parse(localStorage.getItem("bw3_loyalty")||"[]");
+let loyaltyProgramme=JSON.parse(localStorage.getItem("bw3_loyalty_programme")||"null");
+let attendanceRecords=JSON.parse(localStorage.getItem("bw3_attendance")||"[]");
+let salaryRecords=JSON.parse(localStorage.getItem("bw3_salary")||"[]");
+function saveBusinessLink(inputId,key){let v=$(inputId).value.trim();if(v&&!/^https?:\/\//i.test(v))return alert("Enter a complete link starting with https://");localStorage.setItem(key,v);alert("Link saved on this device.");}
+function openSavedLink(key){let v=localStorage.getItem(key);if(!v)return alert("Save the link first.");window.open(v,"_blank","noopener");}
+function saveLoyaltyProgramme(){let name=$("loyaltyProgramName").value.trim(),rule=$("loyaltyRewardRule").value.trim();if(!name||!rule)return alert("Enter programme name and reward rule.");loyaltyProgramme={name,rule,status:loyaltyProgramme?.status||"Paused",updatedAt:new Date().toISOString()};localStorage.setItem("bw3_loyalty_programme",JSON.stringify(loyaltyProgramme));renderLoyalty();}
+function toggleLoyaltyProgramme(){if(!loyaltyProgramme)return alert("Create and save a programme first.");loyaltyProgramme.status=loyaltyProgramme.status==="Running"?"Paused":"Running";localStorage.setItem("bw3_loyalty_programme",JSON.stringify(loyaltyProgramme));renderLoyalty();}
+function editLoyaltyProgramme(){if(!loyaltyProgramme)return alert("Create a programme first.");$("loyaltyProgramName").value=loyaltyProgramme.name;$("loyaltyRewardRule").value=loyaltyProgramme.rule;}
+function registerLoyaltyCustomer(){let name=$("loyaltyName").value.trim(),phone=$("loyaltyPhone").value.trim(),email=$("loyaltyEmail").value.trim();if(!loyaltyProgramme||loyaltyProgramme.status!=="Running")return alert("The loyalty programme is not currently running.");if(!name||!phone)return alert("Enter customer name and mobile number.");if(loyaltyRecords.some(x=>x.phone===phone))return alert("This mobile number is already registered.");loyaltyRecords.unshift({id:"LR"+Date.now(),name,phone,email,status:"Pending",visits:0,registeredAt:new Date().toISOString(),reviewedBy:""});localStorage.setItem("bw3_loyalty",JSON.stringify(loyaltyRecords));$("loyaltyName").value=$("loyaltyPhone").value=$("loyaltyEmail").value="";renderLoyalty();}
+function reviewLoyaltyRegistration(id,status){let r=loyaltyRecords.find(x=>x.id===id);if(!r)return;r.status=status;r.reviewedBy=$("role").value==="owner"?"Owner":"Cashier";r.reviewedAt=new Date().toISOString();localStorage.setItem("bw3_loyalty",JSON.stringify(loyaltyRecords));renderLoyalty();}
+function addLoyaltyVisit(id){let r=loyaltyRecords.find(x=>x.id===id);if(!r||r.status!=="Accepted")return alert("Only accepted members can earn visits.");r.visits=(r.visits||0)+1;localStorage.setItem("bw3_loyalty",JSON.stringify(loyaltyRecords));renderLoyalty();}
+function renderLoyalty(){if($("loyaltyProgramStatus"))$("loyaltyProgramStatus").textContent=loyaltyProgramme?`${loyaltyProgramme.name} · ${loyaltyProgramme.status} · ${loyaltyProgramme.rule}`:"No programme created";if($("loyaltyProgramName")&&loyaltyProgramme){$("loyaltyProgramName").value=loyaltyProgramme.name;$("loyaltyRewardRule").value=loyaltyProgramme.rule;}let rows=loyaltyRecords.map(x=>`<tr><td>${escapeAttr(x.name)}</td><td>${escapeAttr(x.phone)}</td><td>${escapeAttr(x.email||"—")}</td><td>${x.status||"Accepted"}</td><td>${x.visits||0}</td><td>${x.reviewedBy||"—"}</td><td>${x.status==="Pending"?`<button class="gold" onclick="reviewLoyaltyRegistration('${x.id}','Accepted')">Accept</button> <button onclick="reviewLoyaltyRegistration('${x.id}','Rejected')">Reject</button>`:x.status==="Accepted"?`<button onclick="addLoyaltyVisit('${x.id}')">+ Visit</button>`:"—"}</td></tr>`).join("");$("loyaltyTable").innerHTML=rows?'<table><tr><th>Customer</th><th>Mobile</th><th>Email</th><th>Status</th><th>Visits</th><th>Reviewed by</th><th>Action</th></tr>'+rows+'</table>':'<p class="muted">No customer registrations yet.</p>'}
+function addAttendance(){let name=$("staffAttName").value.trim(),date=$("staffAttDate").value||new Date().toISOString().slice(0,10);if(!name)return alert("Enter staff name.");attendanceRecords.unshift({name,date,status:$("staffAttStatus").value,note:$("staffAttNote").value.trim()});localStorage.setItem("bw3_attendance",JSON.stringify(attendanceRecords));$("staffAttName").value="";$("staffAttNote").value="";renderAttendance();}
+function renderAttendance(){$("attendanceTable").innerHTML=attendanceRecords.length?'<table><tr><th>Date</th><th>Staff</th><th>Status</th><th>Note</th></tr>'+attendanceRecords.map(x=>`<tr><td>${x.date}</td><td>${escapeAttr(x.name)}</td><td>${x.status}</td><td>${escapeAttr(x.note||"")}</td></tr>`).join("")+'</table>':'<p class="muted">No attendance entries yet.</p>'}
+function addSalary(){let name=$("salaryStaff").value.trim(),month=$("salaryMonth").value,amount=Number($("salaryAmount").value),paid=Number($("salaryPaid").value||0);if(!name||!month||!Number.isFinite(amount)||amount<0||!Number.isFinite(paid)||paid<0||paid>amount)return alert("Enter a staff name, month and valid salary/payment amounts.");salaryRecords.unshift({name,month,amount,paid,balance:amount-paid});localStorage.setItem("bw3_salary",JSON.stringify(salaryRecords));$("salaryStaff").value="";$("salaryAmount").value="";$("salaryPaid").value="";renderSalary();}
+function renderSalary(){$("salaryTable").innerHTML=salaryRecords.length?'<table><tr><th>Month</th><th>Staff</th><th>Salary</th><th>Paid</th><th>Balance</th></tr>'+salaryRecords.map(x=>`<tr><td>${x.month}</td><td>${escapeAttr(x.name)}</td><td>${fmt(x.amount)}</td><td>${fmt(x.paid)}</td><td>${fmt(x.balance)}</td></tr>`).join("")+'</table>':'<p class="muted">No salary records yet.</p>'}
+function renderAll(){renderProducts();renderCart();renderOrders();renderTables();renderKitchen();renderMenu();renderStock();renderExpenses();renderOverview();renderLoyalty();renderAttendance();renderSalary()}
+function init(){["googleReviewUrl","websiteUrl","instagramUrl","facebookUrl"].forEach((id)=>{let key={googleReviewUrl:"bw3_google_review",websiteUrl:"bw3_website",instagramUrl:"bw3_instagram",facebookUrl:"bw3_facebook"}[id],v=localStorage.getItem(key);if(v)$(id).value=v;});let base=localStorage.getItem("bw3_base");if(base)$("baseUrl").value=base;let t=tableNames.map(n=>`<option value="${escapeAttr(n)}">${escapeAttr(n)}</option>`).join("");$("tableSelect").innerHTML='<option value="">Choose table</option>'+t;$("tableCount").value=tableNames.length;$("salesReportDate").value=new Date().toISOString().slice(0,10);renderAll();if($("role").value==="cashier"){$("ownerNav").classList.add("hide");$("kitchenNav").classList.add("hide")}}
+window.bootBangwiCloud(init);
+</script></body></html>
